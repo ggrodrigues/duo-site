@@ -91,12 +91,12 @@
   .btn.largo { width: 100%; justify-content: center; padding-left: 16px; }
 
   /* ---------------- abertura ---------------- */
-  .abertura { text-align: center; padding: clamp(56px, 8vw, 100px) 0 0; }
+  .abertura { text-align: center; padding: clamp(34px, 4.4vw, 56px) 0 0; }
   .abertura .rotulo { margin-bottom: 24px; }
   .abertura .rotulo::after { content: ""; width: 20px; height: 1px; background: var(--latao-cl); display: block; }
   h1 {
-    font-weight: 800; font-size: clamp(36px, 6.2vw, 70px); line-height: 1.02;
-    letter-spacing: -.028em; margin: 0 auto 22px; max-width: 14ch; text-wrap: balance;
+    font-weight: 800; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.05;
+    letter-spacing: -.026em; margin: 0 auto 18px; max-width: 20ch; text-wrap: balance;
     
   }
   h1 em { font-style: italic; font-weight: 600; color: var(--latao); }
@@ -359,3 +359,135 @@
 .argumento p { color: var(--tinta-md); max-width: 62ch; margin: 0 0 14px; }
 .argumento p:last-child { margin-bottom: 0; }
 .argumento b { color: var(--tinta); font-weight: 600; }
+
+/* ---------- lugar reservado de imagem ----------
+   Bloco de cor lisa que segura a posicao ate a imagem voltar do ChatGPT.
+   Ver item 13 do AGENTS.md no VR SO: imagem final nao e gerada pelo agente,
+   e gerada pelo ChatGPT/Codex a partir de um prompt escrito por ele. */
+.ph {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 7px;
+  background: #D9D3C7; border: 1px solid #C5BDAD; border-radius: 4px;
+  padding: 16px; text-align: center; overflow: hidden; min-width: 0;
+}
+.ph::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.5) 0 1px, transparent 1px 9px);
+}
+.ph b {
+  position: relative; font-family: Montserrat, system-ui, sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
+  color: #6B7480;
+}
+.ph span {
+  position: relative; font-size: 12.5px; line-height: 1.38; color: #7C8590; max-width: 24ch;
+}
+.ph.escuro { background: #143C63; border-color: #0B2A4A; }
+.ph.escuro b { color: var(--latao-cl); }
+.ph.escuro span { color: #9EB4C9; }
+.ph.a4    { aspect-ratio: 1 / 1.414; }
+.ph.card  { aspect-ratio: 4 / 5; }
+.ph.quad  { aspect-ratio: 1 / 1; }
+.ph.larga { aspect-ratio: 16 / 10; }
+
+/* ---------- mostruario do comercio ----------
+   Quatro grupos empilhados, um por cartao de preco. As pecas tem largura
+   fixa (ver pecas.css), entao quem se adapta a tela e a fileira: ela rola
+   de lado em vez de encolher a peca ate quebrar. */
+.mostruario {
+  display: flex; flex-direction: column; gap: clamp(16px, 2.4vw, 26px);
+  padding: clamp(36px, 5vw, 62px) 0 clamp(14px, 2vw, 22px);
+}
+.amostra {
+  background: var(--branco); border: 1px solid var(--fio); border-radius: 18px;
+  padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 14px;
+  box-shadow: var(--sombra-1), inset 0 1px 0 #fff;
+}
+.amostra .fileira {
+  display: flex; gap: 10px; justify-content: center; align-items: flex-start;
+  overflow-x: auto; padding-bottom: 4px;
+}
+.amostra .legenda {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;
+  border-top: 1px solid var(--fio); padding-top: 11px;
+}
+.amostra .ramo {
+  font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--latao);
+}
+.amostra .oq { font-size: 14px; color: var(--tinta-md); }
+
+/* ressalva de prazo, discreta e logo abaixo dos cartoes */
+.ressalva {
+  margin: 18px auto 0; max-width: 74ch; text-align: center;
+  font-size: 13.5px; line-height: 1.5; color: var(--tinta-cl);
+}
+
+/* faixa da tela do sistema, na pagina de industria */
+.tela {
+  margin-top: clamp(40px, 5.5vw, 68px);
+  background: var(--branco); border: 1px solid var(--fio); border-radius: 20px;
+  padding: 14px 14px 12px; box-shadow: var(--sombra-2), inset 0 1px 0 #fff;
+}
+.tela-nota {
+  margin: 12px 0 2px; text-align: center; font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-cl);
+}
+
+/* ---------- capa das duas portas, com deslize no scroll ----------
+   A imagem entra maior que o recorte e desliza conforme a pagina rola.
+   Onde o navegador nao suporta scroll-driven animation, ela fica parada
+   e nada quebra. Respeita prefers-reduced-motion. */
+.porta-card .capa {
+  position: relative; overflow: hidden; border-radius: 14px;
+  aspect-ratio: 16 / 9; background: var(--fio);
+  border: 1px solid var(--fio);
+}
+.porta-card .capa img {
+  position: absolute; top: 0; left: 0; height: 100%; width: 124%;
+  max-width: none;   /* sem isto, um reset com img{max-width:100%} corta a sobra
+                        que o deslize precisa, e sobra faixa vazia a direita */
+  object-fit: cover; display: block;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .porta-card .capa img {
+      animation: pan-capa linear both;
+      animation-timeline: view();
+      animation-range: entry 5% exit 95%;
+    }
+    @keyframes pan-capa {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-19.35%); }
+    }
+  }
+}
+
+/* ---------- home: os tres servicos ----------
+   Os numeros 01/02/03 sao rotulo de linha de servico, nao etapa de processo:
+   nao existe ordem entre eles e nenhum depende do anterior. */
+.servicos {
+  display: grid; gap: 1px; background: var(--fio);
+  border: 1px solid var(--fio); border-radius: 20px; overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+.servico {
+  background: rgba(255,255,255,.8); padding: 28px 26px 30px;
+  display: flex; flex-direction: column; gap: 11px;
+}
+.servico .num {
+  font-family: Montserrat, system-ui, sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: .16em; color: var(--latao);
+}
+.servico h3 { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -.016em; }
+.servico p { margin: 0; color: var(--tinta-md); font-size: 15.5px; }
+.servico ul {
+  list-style: none; margin: 6px 0 0; padding: 14px 0 0; border-top: 1px solid var(--fio);
+  display: flex; flex-wrap: wrap; gap: 7px;
+}
+.servico li {
+  font-size: 13.5px; color: var(--tinta-md);
+  border: 1px solid var(--fio); border-radius: 100px; padding: 5px 13px;
+  background: rgba(255,255,255,.7);
+}
+.amostra .par-a4 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; align-items: start; }

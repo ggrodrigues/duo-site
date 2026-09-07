@@ -3,17 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DUO Criação — panfleto e carrossel com preço na tela</title>
+<title>DUO Comércio — panfleto e carrossel com preço na tela</title>
 <meta name="description" content="Material de divulgação para comércio de bairro em Manaus: panfleto A4, carrossel de 5 cards e arte avulsa, com preço na tela e orçamento no mesmo dia.">
 <link rel="icon" href="../assets/favicon.png">
 <link rel="apple-touch-icon" href="../assets/icone_duo_512.png">
-<meta property="og:title" content="DUO Criação — panfleto e carrossel com preço na tela">
+<meta property="og:title" content="DUO Comércio — panfleto e carrossel com preço na tela">
 <meta property="og:description" content="Material de divulgação para comércio de bairro em Manaus: panfleto A4, carrossel de 5 cards e arte avulsa, com preço na tela e orçamento no mesmo dia.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Source+Sans+3:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Nunito:wght@400;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/pecas.css">
 </head>
 <body>
 
@@ -25,8 +26,8 @@
 <header class="barra">
   <div class="barra-in">
     <div class="marca">
-      <img src="../assets/logo_duo_solucoes.svg" alt="DUO Soluções" width="118" height="40">
-      <span class="porta">Criação</span>
+      <a href="../"><img src="../assets/logo_duo_solucoes.svg" alt="DUO Soluções" width="118" height="40"></a>
+      <span class="porta">Comércio</span>
     </div>
     <a class="btn pequeno" href="https://wa.me/5592981490442?text=Oi!%20Vim%20pelo%20site%20da%20DUO%2C%20quero%20um%20or%C3%A7amento%20de%20arte." target="_blank" rel="noopener">
       Pedir orçamento <span class="seta"><svg><use href="#seta"></use></svg></span>
@@ -42,35 +43,153 @@
     <p class="apoio">Panfleto e carrossel para quem vende no bairro. Você escolhe o pacote, manda uma mensagem e recebe o orçamento no mesmo dia.</p>
     <div class="provas">
       <span><i class="ok"><svg><use href="#tick"></use></svg></i> Orçamento no mesmo dia</span>
-      <span><i class="ok"><svg><use href="#tick"></use></svg></i> Entrega em 2 a 3 dias</span>
+      <span><i class="ok"><svg><use href="#tick"></use></svg></i> Entrega em 2 a 3 dias úteis</span>
       <span><i class="ok"><svg><use href="#tick"></use></svg></i> Uma rodada de ajuste inclusa</span>
     </div>
   </div>
 
-  <div class="vitrine">
-    <div class="peca panfleto">
-      <span class="p-rot">Banho &amp; tosa</span>
-      <h4>Seu bicho<br>sai daqui<br>cheiroso.</h4>
-      <span class="p-fio"></span>
-      <div class="p-lin"><i></i><i></i><i></i></div>
-      <span class="p-vlr">a partir de R$ 45</span>
-    </div>
-    <div class="cards-3">
-      <article class="peca mini">
-        <span class="m-n">01</span>
-        <div><span class="m-f"></span><p class="m-t">Chegou a<br>promoção</p></div>
+  <div class="mostruario">
+
+    <article class="amostra">
+      <div class="fileira">
+        <div class="pc w-cond"><div class="cond">
+        <div class="topo"><i></i><span>Parque das Acácias · Eleição de síndico</span></div>
+        <div class="foto"><img src="../assets/pecas/cond-retrato.jpg" alt="" loading="lazy"></div>
+        <h3>As contas<br>agora estão<br><em>em ordem.</em></h3>
+        <p class="sub">Dívidas antigas negociadas, portaria reforçada e um condomínio preparado para o próximo mandato.</p>
+        <p class="nome">Marina Alcântara</p>
+        <p class="cargo">candidata a síndica</p>
+        <div class="faixa"><b>Vote Marina</b><span>12/10 · 19H</span></div>
+      </div></div>
+        <div class="pc w-cond"><div class="cond verso">
+          <div class="topo"><i></i><span>O que já foi feito</span></div>
+          <h3>Três anos<br>de conta<br><em>no azul.</em></h3>
+          <p class="sub">Não é promessa de campanha: é o que a chapa entregou no mandato que está terminando.</p>
+          <div class="marcos">
+            <div class="marco"><b>R$ 86 mil</b><span>de dívida antiga quitada</span></div>
+            <div class="marco"><b>0</b><span>taxas extras cobradas</span></div>
+            <div class="marco"><b>18</b><span>câmeras novas instaladas</span></div>
+          </div>
+          <div class="duasfotos">
+            <span><img src="../assets/pecas/cond-portaria.jpg" alt="" loading="lazy"></span>
+            <span><img src="../assets/pecas/cond-salao.jpg" alt="" loading="lazy"></span>
+          </div>
+          <div class="itens">
+            <div><b>Portaria</b>guarita reformada e ronda noturna</div>
+            <div><b>Salão de festas</b>pintura, mobília e ar-condicionado</div>
+            <div><b>Contas</b>prestação mensal aberta a todos</div>
+            <div><b>Água</b>troca da bomba e fim do rodízio</div>
+          </div>
+          <div class="faixa"><b>Vote Marina</b><span>12/10 · 19H</span></div>
+        </div></div>
+      </div>
+      <div class="legenda">
+        <span class="ramo">Condomínio</span>
+        <span class="oq">Panfleto A4 · frente e verso</span>
+      </div>
+    </article>
+
+      <article class="amostra">
+        <div class="fileira">
+          <div class="pc w-panf"><div class="pet panf">
+            <div class="marca"><i></i><b>Pet Aurora</b></div>
+            <div class="foto"><img src="../assets/pecas/pet-banho.jpg" alt="" loading="lazy"></div>
+            <h3>Banho e tosa<br><em>com hora marcada.</em></h3>
+            <p class="txt">Sem fila, sem deixar o dia inteiro. Você marca, traz e busca no horário combinado.</p>
+            <div class="lista">
+              <div><i>&#10003;</i> Banho, tosa e hidratação</div>
+              <div><i>&#10003;</i> Consulta e vacina no local</div>
+              <div><i>&#10003;</i> Leva e traz no bairro</div>
+            </div>
+            <div class="cta">Agende pelo WhatsApp</div>
+          </div></div>
+          <div class="pc w-card"><div class="pet card">
+            <div class="foto"><img src="../assets/pecas/pet-gato.jpg" alt="" loading="lazy"></div>
+            <p class="tag">Toda terça</p>
+            <h4>Terça do<br>banho: 20%<br>de desconto.</h4>
+            <p class="pe">Pet Aurora · marque pelo zap</p>
+          </div></div>
+        </div>
+        <div class="legenda">
+          <span class="ramo">Petshop</span>
+          <span class="oq">Panfleto e carrossel com a mesma identidade</span>
+        </div>
       </article>
-      <article class="peca mini">
-        <span class="m-n">02</span>
-        <div><span class="m-f"></span><p class="m-t">Toda<br>quarta</p></div>
+
+      <article class="amostra">
+        <div class="fileira">
+          <div class="pc w-acai"><div class="acai p1">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="dentro"><span class="n">1/5</span><p class="marca">Açaí do Beco</p>
+              <h4>A tigela<br>de 700 <em>chegou.</em></h4>
+              <div class="foto"><img src="../assets/pecas/acai-tigela.jpg" alt="" loading="lazy"></div>
+              <div class="pe"><span>Arraste &rarr;</span></div></div>
+          </div></div>
+          <div class="pc w-acai"><div class="acai p2">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="dentro"><span class="n">2/5</span><p class="marca">Tigela 700 ml</p>
+              <h4>Três acompanhamentos sem pagar a mais.</h4>
+              <div class="sabores"><span>Banana</span><span>Granola</span><span>Paçoca</span><span>Castanha</span></div>
+              <p class="de">De R$ 24,90</p>
+              <div class="preco"><small>R$</small>18<small>,90</small></div>
+              <div class="pe"><span>Até domingo</span></div></div>
+          </div></div>
+          <div class="pc w-acai"><div class="acai p3">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="dentro"><span class="n">3/5</span><p class="marca">Também tem</p>
+              <h4>X-caboquinho,<br>todo dia.</h4>
+              <div class="foto"><img src="../assets/pecas/acai-caboquinho.jpg" alt="" loading="lazy"></div>
+              <div class="pe"><span>A partir de R$ 12</span></div></div>
+          </div></div>
+          <div class="pc w-acai"><div class="acai p4">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="dentro"><span class="n">4/5</span><p class="marca">Entrega</p>
+              <h4>No seu<br>portão em<br>30 minutos.</h4>
+              <p class="txt">Nas ruas do entorno, de segunda a sábado, das 15h às 22h. Pix, cartão ou dinheiro.</p>
+              <div class="pe"><span>Raio de 2 km</span></div></div>
+          </div></div>
+          <div class="pc w-acai"><div class="acai p5">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="dentro"><span class="n">5/5</span><p class="marca">Peça agora</p>
+              <h4>Chama<br>no zap.</h4>
+              <div class="foto"><img src="../assets/pecas/acai-fachada.jpg" alt="" loading="lazy"></div>
+              <div class="pe"><span>(92) 9 &middot;&middot;&middot;&middot;-&middot;&middot;&middot;&middot;</span></div></div>
+          </div></div>
+        </div>
+        <div class="legenda">
+          <span class="ramo">Açaiteria</span>
+          <span class="oq">Carrossel de 5 cards em sequência</span>
+        </div>
       </article>
-      <article class="peca mini">
-        <span class="m-n">03</span>
-        <div><span class="m-f"></span><p class="m-t">Chama<br>no zap</p></div>
+
+      <article class="amostra">
+        <div class="fileira">
+          <div class="pc w-sal"><div class="sal a">
+            <span class="fundo"><img src="../assets/pecas/salao-cabelo.jpg" alt="" loading="lazy"></span>
+            <span class="veu"></span>
+            <div class="dentro">
+              <p class="rot">Ateliê Vera</p>
+              <h4>Cabelo novo,<br><em>semana nova.</em></h4>
+              <div class="pe"><span>Agende pelo direct</span><b>Ter a sáb</b></div>
+            </div>
+          </div></div>
+          <div class="pc w-sal"><div class="sal b">
+            <div class="painel">
+              <p class="rot">Ateliê Vera</p>
+              <h4>Cabelo novo,<br><em>semana nova.</em></h4>
+              <div class="pe"><span>Pelo direct</span><b>Ter a sáb</b></div>
+            </div>
+            <div class="faixa"><img src="../assets/pecas/salao-cabelo.jpg" alt="" loading="lazy"></div>
+          </div></div>
+        </div>
+        <div class="legenda">
+          <span class="ramo">Salão</span>
+          <span class="oq">Arte avulsa, com uma variação</span>
+        </div>
       </article>
-    </div>
+
   </div>
-  <p class="vitrine-nota">Peças de demonstração · o seu material é desenhado do zero</p>
+  <p class="vitrine-nota">O seu material é desenhado do zero</p>
 
   <div class="pacotes">
 
@@ -86,7 +205,7 @@
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Arquivo em alta, pronto para a gráfica</li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Texto organizado junto com você</li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Uma rodada de ajuste</li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> Pronto em 2 dias</li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> Pronto em 2 dias úteis</li>
         </ul>
       </div>
       <a class="btn contorno largo" href="https://wa.me/5592981490442?text=Oi!%20Vim%20pelo%20site%20da%20DUO.%20Quero%20o%20panfleto%20de%20R%24%20200." target="_blank" rel="noopener">
@@ -108,7 +227,7 @@
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> A mesma identidade nas duas peças</li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Formatos certos para WhatsApp e Instagram</li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Uma rodada de ajuste no conjunto</li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> Pronto em 3 dias</li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> Pronto em 3 dias úteis</li>
         </ul>
       </div>
       <a class="btn laranja largo" href="https://wa.me/5592981490442?text=Oi!%20Vim%20pelo%20site%20da%20DUO.%20Quero%20o%20pacote%20de%20panfleto%20%2B%20carrossel%2C%20R%24%20450." target="_blank" rel="noopener">
@@ -128,7 +247,7 @@
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Formatos de WhatsApp e Instagram</li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Texto organizado junto com você</li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> Uma rodada de ajuste</li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> Pronto em 2 dias</li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> Pronto em 2 dias úteis</li>
         </ul>
       </div>
       <a class="btn contorno largo" href="https://wa.me/5592981490442?text=Oi!%20Vim%20pelo%20site%20da%20DUO.%20Quero%20o%20carrossel%20de%20R%24%20300." target="_blank" rel="noopener">
@@ -138,12 +257,54 @@
   </div>
 
   <div class="avulso">
-    <span class="txt"><b>Só uma arte solta?</b> Uma peça para post, anúncio ou status, com uma variação — fica pronta no mesmo dia.</span>
+    <span class="txt"><b>Só uma arte solta?</b> Uma peça para post, anúncio ou status, com uma variação — pronta em 2 dias úteis. <b>Precisa de uma peça impressa em 3D junto?</b> A gente faz sob medida a partir de R$ 80, e ela entra no mesmo orçamento.</span>
     <span class="preco"><span class="cifra">R$</span>120</span>
     <a class="btn pequeno contorno" href="https://wa.me/5592981490442?text=Oi!%20Vim%20pelo%20site%20da%20DUO.%20Quero%20uma%20arte%20avulsa%2C%20R%24%20120." target="_blank" rel="noopener">
       Pedir arte <span class="seta"><svg><use href="#seta"></use></svg></span>
     </a>
   </div>
+
+  <p class="ressalva">Prazos de referência, em dias úteis, contados a partir do
+  material aprovado. Projeto maior, impressão em gráfica parceira ou material
+  que chega incompleto podem mover a data — e quando isso acontecer, você é
+  avisado antes, não depois.</p>
+
+  <section>
+    <div class="cabeca">
+      <span class="rotulo">Além da arte</span>
+      <h2>Se o problema não é divulgar, é controlar.</h2>
+      <p>Muito comércio não precisa de mais um panfleto — precisa parar de anotar as coisas num caderno. A DUO também faz isso, e faz do mesmo jeito: sob medida, em cima do que você já usa hoje.</p>
+    </div>
+
+    <div class="ofertas">
+      <article class="oferta">
+        <h3>Controle simples</h3>
+        <p>Uma coisa só, bem resolvida, para o que hoje mora num caderno ou numa planilha.</p>
+        <ul class="lista">
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span><b>Ficha de cliente e histórico.</b> Quem é, o que já comprou, quando voltou.</span></li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span><b>Agenda e lembrete.</b> Retorno de vacina, revisão, manutenção — avisado antes de vencer.</span></li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span><b>Controle de entrada e saída.</b> Produto, serviço ou material, com quem fez e quando.</span></li>
+        </ul>
+      </article>
+
+      <article class="oferta">
+        <h3>Sistema sob medida</h3>
+        <p>Quando o seu jeito de trabalhar não cabe em nenhum aplicativo de assinatura mensal.</p>
+        <ul class="lista">
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span><b>Feito no seu processo</b>, não no processo que o aplicativo impõe.</span></li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span><b>Sem mensalidade de licença.</b> Você paga o sistema, não o aluguel dele.</span></li>
+          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span><b>Seus dados ficam com você</b>, no seu ambiente.</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="avulso">
+      <span class="txt"><b>Aqui o preço não fica na tela, e o motivo é honesto:</b> um controle simples e um sistema inteiro não custam a mesma coisa, e chutar um número na página não ajudaria você a decidir. Conta o que precisa e o orçamento sai em 1 dia útil.</span>
+      <a class="btn pequeno contorno" href="https://wa.me/5592981490442?text=Oi!%20Vim%20pelo%20site%20da%20DUO.%20Queria%20conversar%20sobre%20um%20controle%20para%20o%20meu%20com%C3%A9rcio." target="_blank" rel="noopener">
+        Pedir orçamento <span class="seta"><svg><use href="#seta"></use></svg></span>
+      </a>
+    </div>
+  </section>
 
   <section>
     <div class="cabeca">
@@ -197,7 +358,7 @@
   </div>
 
   <footer>
-    <span><b>DUO Soluções</b> · Criação<br>Ayna Caroline Marcião Vieira · CNPJ 68.463.489/0001-71</span>
+    <span><b>DUO Soluções</b> · Comércio<br>Ayna Caroline Marcião Vieira · CNPJ 68.463.489/0001-71</span>
     <span>Manaus · Amazonas<br>Atendimento por WhatsApp</span>
   </footer>
 </main>

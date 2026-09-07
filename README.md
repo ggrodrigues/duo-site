@@ -9,7 +9,7 @@ Estático, sem build: HTML e CSS escritos à mão, publicado no GitHub Pages.
 ```
 index.html            → duosolucoesam.com.br         (bifurca as duas portas)
 industria/index.html  → /industria                   (DUO Indústria)
-criacao/index.html    → /criacao                     (DUO Criação)
+comercio/index.html    → /comercio                     (DUO Comércio)
 assets/               logo, ícone, favicon e style.css
 CNAME                 domínio próprio
 ```
