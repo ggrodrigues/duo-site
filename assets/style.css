@@ -491,3 +491,126 @@
   background: rgba(255,255,255,.7);
 }
 .amostra .par-a4 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; align-items: start; }
+
+
+  /* ============ FAQ (/duvidas) ============
+     Composicao no padrao da tenscope.com/pricing, que e a referencia
+     aprovada em 03/09: coluna dupla 0.65fr / 1fr, titulo FIXO na coluna
+     estreita acompanhando a rolagem, e todas as perguntas dentro de UM
+     cartao branco com borda fina e canto arredondado — nao um cartao por
+     pergunta. Cores e tipografia sao as da DUO, nao as deles. */
+
+  .faq-bloco {
+    display: grid; grid-template-columns: .65fr 1fr; align-items: start;
+    gap: clamp(24px, 4vw, 56px);
+    padding: clamp(30px, 4vw, 52px) 0 clamp(38px, 6vw, 76px);
+  }
+  .faq-titulo { position: sticky; top: 96px; }
+  .faq-titulo h2 {
+    font-family: Montserrat, system-ui, sans-serif; font-weight: 700;
+    font-size: clamp(26px, 3.4vw, 40px); line-height: 1.12; letter-spacing: -.015em;
+    color: var(--navy); margin: 14px 0 0;
+  }
+  .faq-titulo p { margin: 14px 0 0; color: var(--tinta-md); line-height: 1.6; max-width: 34ch; }
+
+  .faq-lista {
+    background: var(--branco); border: 1px solid var(--fio);
+    border-radius: 12px; box-shadow: var(--sombra-1); overflow: hidden;
+  }
+  .faq-lista details + details { border-top: 1px solid var(--fio); }
+
+  .faq-lista summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center;
+    gap: 16px; padding: clamp(18px, 2.2vw, 24px);
+    font-family: Montserrat, system-ui, sans-serif; font-weight: 600;
+    font-size: clamp(15px, 1.45vw, 17px); line-height: 1.35; color: var(--navy);
+    transition: background .15s ease;
+  }
+  .faq-lista summary::-webkit-details-marker { display: none; }
+  .faq-lista summary:hover { background: var(--marfim-alto); }
+  .faq-lista summary:focus-visible { outline: 2px solid var(--latao); outline-offset: -2px; }
+
+  .faq-lista .mais {
+    position: relative; flex: none; width: 24px; height: 24px; border-radius: 4px;
+    background: var(--marfim); display: flex; align-items: center; justify-content: center;
+  }
+  .faq-lista .mais i {
+    position: absolute; width: 11px; height: 1.5px; background: var(--latao);
+    transition: transform .2s ease;
+  }
+  .faq-lista .mais i:last-child { transform: rotate(90deg); }
+  .faq-lista details[open] .mais i:last-child { transform: rotate(0); }
+
+  .faq-lista .resposta {
+    padding: 0 clamp(18px, 2.2vw, 24px) clamp(20px, 2.4vw, 26px) 64px;
+    max-width: 64ch;
+  }
+  .faq-lista .resposta p { margin: 0 0 12px; color: var(--tinta-md); line-height: 1.62; }
+  .faq-lista .resposta p:last-child { margin-bottom: 0; }
+  .faq-lista .resposta b { color: var(--tinta); font-weight: 600; }
+
+  .faq-lista .tabela-preco { width: 100%; border-collapse: collapse; margin: 2px 0 14px; }
+  .faq-lista .tabela-preco th, .faq-lista .tabela-preco td {
+    text-align: left; padding: 9px 0; border-bottom: 1px solid var(--fio);
+  }
+  .faq-lista .tabela-preco th {
+    font-family: Montserrat, system-ui, sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--latao);
+  }
+  .faq-lista .tabela-preco td { color: var(--tinta-md); }
+  .faq-lista .tabela-preco td:last-child, .faq-lista .tabela-preco th:last-child {
+    text-align: right; white-space: nowrap;
+    font-family: Montserrat, system-ui, sans-serif; font-weight: 600; color: var(--navy);
+  }
+  .faq-lista .tabela-preco tr:last-child td { border-bottom: none; }
+
+  @media (max-width: 860px) {
+    .faq-bloco { grid-template-columns: 1fr; gap: 20px; padding: 26px 0 34px; }
+    .faq-titulo { position: relative; top: 0; }
+    .faq-lista .resposta { padding-left: clamp(18px, 2.2vw, 24px); }
+  }
+
+  /* ============ Navegacao do topo ============
+     A tenscope mantem os links no cabecalho de TODA pagina, com o botao de
+     acao a direita. Aqui os links ficam sempre visiveis e quebram para uma
+     segunda linha no celular, em vez do menu-sanduiche deles: sao quatro
+     links, e sanduiche para quatro itens esconde o que nao precisava ser
+     escondido. A barra continua sendo o proprio fundo, sem borda (03/09). */
+
+  .barra nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 26px); }
+  .barra nav a {
+    font-family: Montserrat, system-ui, sans-serif; font-size: 13.5px; font-weight: 600;
+    color: var(--tinta-md); text-decoration: none; white-space: nowrap;
+    padding: 4px 0; border-bottom: 1.5px solid transparent; transition: color .15s ease, border-color .15s ease;
+  }
+  .barra nav a:hover { color: var(--navy); }
+  .barra nav a[aria-current="page"] { color: var(--navy); border-bottom-color: var(--latao); }
+  .barra-in { gap: 16px; }
+  .barra .marca { flex: none; }
+
+  @media (max-width: 780px) {
+    .barra-in { flex-wrap: wrap; row-gap: 10px; }
+    .barra nav { order: 3; width: 100%; gap: 18px; overflow-x: auto; padding-bottom: 2px; }
+    .barra nav::-webkit-scrollbar { display: none; }
+    .barra nav { scrollbar-width: none; }
+  }
+
+  /* ============ Paginas de texto corrido (privacidade, termos) ============ */
+  .texto-legal { max-width: 68ch; padding: 0 0 clamp(40px, 6vw, 72px); }
+  .texto-legal h2 {
+    font-family: Montserrat, system-ui, sans-serif; font-weight: 700;
+    font-size: clamp(17px, 1.9vw, 21px); line-height: 1.25; color: var(--navy);
+    margin: clamp(30px, 4vw, 44px) 0 12px;
+  }
+  .texto-legal h2:first-child { margin-top: 0; }
+  .texto-legal p { margin: 0 0 14px; color: var(--tinta-md); line-height: 1.68; }
+  .texto-legal b { color: var(--tinta); font-weight: 600; }
+  .texto-legal ul { margin: 0 0 16px; padding-left: 20px; }
+  .texto-legal li { color: var(--tinta-md); line-height: 1.62; margin-bottom: 8px; }
+  .texto-legal .atualizado {
+    font-family: Montserrat, system-ui, sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--latao);
+    border-top: 1px solid var(--fio); padding-top: 18px; margin-top: clamp(30px, 4vw, 44px);
+  }
+  footer a { color: var(--tinta-md); text-decoration: none; border-bottom: 1px solid var(--fio-fino); }
+  footer a:hover { color: var(--navy); border-bottom-color: var(--latao); }
