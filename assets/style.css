@@ -262,7 +262,7 @@
   }
 
   .caso {
-    margin-top: 30px; border: 1px dashed rgba(169,127,69,.45); border-radius: 20px;
+    margin-top: 30px; border: 1px solid rgba(169,127,69,.45); border-radius: 20px;
     background: rgba(255,255,255,.5); padding: clamp(26px, 4vw, 42px); position: relative;
   }
   .caso .aviso {
@@ -271,6 +271,10 @@
   }
   .caso h3 { font-size: clamp(21px, 3vw, 28px); font-weight: 800; margin: 0 0 14px; letter-spacing: -.022em; }
   .caso p { margin: 0; color: var(--tinta-md); max-width: 58ch; }
+
+  .caso .autorizacao {
+    margin-top: 14px; font-size: 13px; color: var(--tinta-cl);
+  }
 
   .fecho {
     margin: clamp(64px, 8vw, 104px) 0 0;
