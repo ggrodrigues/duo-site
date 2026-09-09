@@ -618,3 +618,78 @@
   }
   footer a { color: var(--tinta-md); text-decoration: none; border-bottom: 1px solid var(--fio-fino); }
   footer a:hover { color: var(--navy); border-bottom-color: var(--latao); }
+
+  /* ============ Home: as tres frentes de servico ============
+     Pedido da Ayna em 09/09: as tres frentes tem que aparecer na PRIMEIRA
+     vista, abaixo do titulo, e a imagem e o foco — o texto e apoio. Por isso
+     o cartao abre pela imagem, com o nome do servico logo abaixo dela e uma
+     linha curta de apoio. Substitui o .portas, que dividia por publico. */
+
+  .frentes {
+    display: grid; gap: clamp(16px, 2vw, 22px);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    padding-top: clamp(28px, 4vw, 44px);
+  }
+  .frente {
+    display: flex; flex-direction: column; text-decoration: none; color: inherit;
+    background: var(--branco); border: 1px solid var(--fio); border-radius: 18px;
+    overflow: hidden; box-shadow: var(--sombra-1);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .frente:hover { transform: translateY(-3px); box-shadow: var(--sombra-2); border-color: var(--latao-cl); }
+  .frente .capa { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--marfim); }
+  .frente .capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .frente .corpo { padding: clamp(18px, 2.2vw, 24px); display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .frente .num {
+    font-family: Montserrat, system-ui, sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; color: var(--latao);
+  }
+  .frente h2 {
+    font-family: Montserrat, system-ui, sans-serif; font-weight: 700;
+    font-size: clamp(18px, 1.9vw, 21px); line-height: 1.2; letter-spacing: -.015em;
+    color: var(--navy); margin: 0;
+  }
+  .frente p { margin: 0; color: var(--tinta-md); font-size: 15px; line-height: 1.55; }
+  .frente .ir {
+    margin-top: auto; padding-top: 14px; display: inline-flex; align-items: center; gap: 9px;
+    font-family: Montserrat, system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: var(--navy);
+  }
+  .frente .ir .seta { display: inline-flex; transition: transform .2s ease; }
+  .frente .ir .seta svg { width: 13px; height: 13px; fill: var(--latao); display: block; }
+  .frente:hover .ir .seta { transform: translateX(3px); }
+
+  /* botoes da abertura, no lugar da antiga div.provas */
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+
+  /* ============ Entrada por rolagem ============
+     Fluidez pedida pela Ayna em 09/09, com duas travas deliberadas: fica
+     dentro de prefers-reduced-motion, e a amplitude e baixa. A regra de 03/09
+     nasceu de ela relatar TONTURA com a versao escura e granulada — movimento
+     agressivo repete o mesmo erro. Sem JavaScript: animation-timeline e CSS. */
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .entra {
+        animation: sobe-entra linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 42%;
+      }
+      @keyframes sobe-entra {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+  }
+  .apoio-frentes {
+    text-align: center; max-width: 62ch; margin: clamp(26px,3.4vw,38px) auto 0;
+    color: var(--tinta-md); line-height: 1.62;
+  }
+
+  /* etiqueta de vista (Industria / Comercio) dentro da pagina de servico */
+  .oferta .vista {
+    display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+    font-family: Montserrat, system-ui, sans-serif; font-size: 10.5px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--latao);
+    background: var(--marfim); border: 1px solid var(--fio); border-radius: 999px;
+    padding: 5px 12px; margin-bottom: 14px;
+  }
