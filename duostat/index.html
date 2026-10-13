@@ -3,353 +3,317 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DUOSTAT — CEP e MSA — DUO Soluções</title>
-<meta name="description" content="Capacidade, carta X̄-R, GR&R, linearidade, estabilidade e tendência, com o passo a passo de cada cálculo e a fonte de cada fórmula. Roda no computador da planta, sem internet.">
-<link rel="canonical" href="https://duosolucoesam.com.br/duostat/">
-<link rel="icon" href="../assets/favicon.png">
-<link rel="apple-touch-icon" href="../assets/icone_duo_512.png">
-<meta property="og:title" content="DUOSTAT — CEP e MSA com o cálculo à vista">
-<meta property="og:description" content="Seis estudos de CEP e MSA conferidos contra o manual AIAG, com o passo a passo de cada número. Teste de 30 dias.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://duosolucoesam.com.br/duostat/">
-<meta property="og:image" content="https://duosolucoesam.com.br/assets/home-industria.jpg">
+<title>DUOSTAT — CEP e MSA padronizados e didáticos | DUO Soluções</title>
+<meta name="description" content="Capacidade, carta X̄-R e GR&R com o passo a passo de cada cálculo, sem internet e com os dados dentro da planta.">
+<meta property="og:title" content="DUOSTAT — CEP e MSA padronizados e didáticos | DUO Soluções">
+<meta property="og:description" content="Capacidade, carta X̄-R e GR&R com o passo a passo de cada cálculo, sem internet e com os dados dentro da planta.">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="DUO Soluções">
-<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
 <style>
-/* Página do DUOSTAT: o sistema do site, mais o cálculo ao vivo como bloco escuro pontual */
-.ds-num{font-family:"JetBrains Mono",Consolas,monospace;font-variant-numeric:tabular-nums}
-.ds-abertura{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;padding:clamp(34px,4.4vw,56px) 0 12px}
-.ds-abertura h1{margin:0 0 18px;max-width:14ch;text-align:left}
-.ds-abertura .apoio{color:var(--tinta-md);font-size:18.5px;max-width:40ch;margin:0 0 28px}
-.ds-abertura .acoes{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
-.ds-fatos{margin-top:26px;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:15px;color:var(--tinta-md)}
-.ds-fatos span{display:inline-flex;align-items:center;gap:8px}
-.ds-fatos span::before{content:"";width:6px;height:6px;background:var(--latao);border-radius:1px}
-
-.ds-calc{background:var(--navy);color:#fff;border-radius:14px;box-shadow:var(--sombra-3);overflow:hidden;min-width:0}
-.ds-calc-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
-.ds-calc-head b{font-family:Montserrat,sans-serif;font-weight:700;font-size:16px}
-.ds-calc-head b span{font-weight:500;opacity:.8}
-.ds-calc-head .ds-num{font-size:13px;color:var(--latao-cl)}
-.ds-calc svg{display:block;width:100%;height:auto;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
-.ds-calc .bar-h{fill:rgba(255,255,255,.14);stroke:rgba(255,255,255,.7);stroke-width:1}
-.ds-calc .curve{fill:none;stroke:var(--latao-cl);stroke-width:2}
-.ds-calc .lim{stroke:var(--laranja);stroke-width:2}
-.ds-calc .mean{stroke:#fff;stroke-width:1.2;stroke-dasharray:4 4}
-.ds-calc .ax{fill:rgba(255,255,255,.6);font-family:"JetBrains Mono",monospace;font-size:11px}
-.ds-calc .lt{fill:var(--laranja);font-family:Montserrat,sans-serif;font-size:12px;font-weight:700}
-.ds-passos{list-style:none;margin:0;padding:4px 20px}
-.ds-passos li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.14);font-size:15px;align-items:baseline}
-.ds-passos li:last-child{border-bottom:0}
-.ds-passos i{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12.5px;opacity:.65}
-.ds-passos .v{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
-.ds-veredito{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
-.ds-cpk{font-family:Montserrat,sans-serif;font-weight:800;font-size:34px;line-height:1}
-.ds-cpk small{font-size:14px;font-weight:600;opacity:.7;margin-right:6px}
-.ds-selo{font-family:Montserrat,sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:100px}
-.ds-selo.ok{background:rgba(86,194,122,.18);color:#8FE0AA}
-.ds-selo.nok{background:rgba(242,98,45,.2);color:#FFB08F}
-.ds-outra{border:0;background:none;color:var(--latao-cl);font:600 15px "Source Sans 3",sans-serif;cursor:pointer;padding:6px 0}
-.ds-outra:hover{color:#fff}
-
-.ds-estudos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.ds-estudo{background:var(--marfim-alto);border:1px solid var(--fio);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--sombra-1);min-width:0}
-.ds-estudo img{width:64px;height:64px;object-fit:contain}
-.ds-estudo .vista{font-family:Montserrat,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--latao)}
-.ds-estudo h3{margin:0;font-size:20px}
-.ds-estudo p{margin:0;color:var(--tinta-md);font-size:15.5px}
-.ds-estudo .sai{margin-top:auto;padding-top:6px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--tinta-cl)}
-
-.ds-fontes{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;align-items:start}
-.ds-placar{background:var(--navy);color:#fff;border-radius:14px;padding:28px;box-shadow:var(--sombra-2)}
-.ds-placar .g{font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(60px,8vw,92px);line-height:.9;display:block;margin:10px 0 12px}
-.ds-placar .g span{color:var(--laranja)}
-.ds-placar p{margin:0;opacity:.85;font-size:16px}
-.ds-placar .rotulo{color:var(--latao-cl)}
-.ds-ref{display:flex;flex-direction:column}
-.ds-ref div{padding:16px 0;border-bottom:1px solid var(--fio)}
-.ds-ref div:first-child{border-top:1px solid var(--fio)}
-.ds-ref b{display:block}
-.ds-ref span{color:var(--tinta-md);font-size:15.5px}
-
-.ds-planos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.ds-plano{background:var(--marfim-alto);border:1px solid var(--fio);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sombra-1)}
-.ds-plano.principal{border:2px solid var(--navy);box-shadow:var(--sombra-2)}
-.ds-plano h3{margin:0;font-size:20px}
-.ds-preco{font-family:Montserrat,sans-serif;font-weight:800;font-size:42px;line-height:1;color:var(--navy)}
-.ds-preco small{font-size:16px;font-weight:600;color:var(--tinta-md)}
-.ds-plano .btn{margin-top:auto;align-self:flex-start}
-
-.ds-pedido{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;align-items:start}
-.ds-form{background:var(--marfim-alto);border:1px solid var(--fio);border-radius:14px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px;box-shadow:var(--sombra-1)}
-.ds-campo{display:flex;flex-direction:column;gap:6px;min-width:0}
-.ds-campo.cheio{grid-column:1 / -1}
-.ds-form label{font-family:Montserrat,sans-serif;font-weight:600;font-size:14px}
-.ds-form label small{font-weight:500;color:var(--tinta-cl)}
-.ds-form input{height:44px;border:1px solid #D8CDB8;border-radius:8px;padding:0 12px;font:inherit;font-size:16px;background:#fff;color:var(--tinta);width:100%}
-.ds-form input:focus{outline:2px solid var(--navy);outline-offset:0;border-color:var(--navy)}
-.ds-form .pe{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-.ds-form .pe span{font-size:14px;color:var(--tinta-md)}
-
-@media (max-width:900px){
-  .ds-abertura,.ds-fontes,.ds-pedido{grid-template-columns:1fr}
-  .ds-estudos{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:600px){
-  .ds-estudos,.ds-planos,.ds-form{grid-template-columns:1fr}
-}
+body{margin:0}
+a{color:#0B2A4A}a:hover{color:#F2622D}
+#cob-mensal,#cob-anual{position:absolute;opacity:0;pointer-events:none}
+.cob-toggle label{cursor:pointer;padding:10px 20px;border-radius:99px;font-weight:600;color:#4A5560;display:inline-flex;align-items:center;gap:8px;min-height:44px;box-sizing:border-box}
+#cob-anual:checked~.cob-toggle label[for=cob-anual],#cob-mensal:checked~.cob-toggle label[for=cob-mensal]{background:#0B2A4A;color:#FFFFFF}
+#cob-anual:checked~.cob-toggle label[for=cob-anual] .cob-selo{background:#FFFFFF;color:#0B2A4A}
+#cob-anual:focus-visible~.cob-toggle label[for=cob-anual],#cob-mensal:focus-visible~.cob-toggle label[for=cob-mensal]{outline:2px solid #F2622D;outline-offset:2px}
+#cob-anual:checked~div .so-mensal,#cob-mensal:checked~div .so-anual{display:none !important}
+.hero-mock{max-width:100%}
+@media (min-width:1024px){.hero-mock{transform:scale(1.15);transform-origin:center}}
 </style>
 </head>
 <body>
+<div style="font-family: 'Source Sans 3', system-ui, sans-serif; color: #1A2530; background: #FFFFFF; font-size: 17px; line-height: 1.6">
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<symbol id="tick" viewBox="0 0 16 16"><path d="M6.1 12.1 1.9 7.9l1.3-1.3 2.9 2.9L12.8 3l1.3 1.3z"/></symbol>
-<symbol id="seta" viewBox="0 0 16 16"><path d="M6 3.2 10.8 8 6 12.8l-1.1-1.1L8.6 8 4.9 4.3z"/></symbol>
-</defs></svg>
-
-<header class="barra">
-  <div class="barra-in">
-    <div class="marca">
-      <a href="../"><img src="../assets/logo_duo_solucoes.svg" alt="DUO Soluções" width="118" height="40"></a>
-    </div>
-    <nav>
-      <a href="../">Início</a>
-      <a href="../sistemas/" aria-current="page">Software</a>
-      <a href="../pecas-3d/">Impressão 3D</a>
-      <a href="../divulgacao/">Divulgação</a>
-      <a href="../portfolio/">Portfólio</a>
-      <a href="../duvidas/">Dúvidas</a>
-    </nav>
-    <a class="btn pequeno laranja" href="DUOSTAT.html" download>
-      Baixar o DUOSTAT <span class="seta"><svg><use href="#seta"></use></svg></span>
-    </a>
-  </div>
+<header style="border-bottom: 1px solid #E3E7EC; background: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="/" style="display: flex; align-items: center"><img src="/assets/site/logo-duo-solucoes.svg" alt="DUO Soluções — voltar à home" style="height: 44px; width: auto; display: block"></a>
+<nav aria-label="DUOSTAT" style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px; font-weight: 600; font-size: 16px">
+<a href="/" style="text-decoration: none; color: #5B6470">Produtos</a>
+<a href="#como-funciona" style="text-decoration: none">Recursos</a>
+<a href="#exemplos" style="text-decoration: none">Exemplos</a>
+<a href="#planos" style="text-decoration: none">Preços</a>
+<a href="#duvidas" style="text-decoration: none">Perguntas frequentes</a>
+<a href="#teste" style="text-decoration: none; background: #F2622D; color: #FFFFFF; padding: 11px 18px; border-radius: 6px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Teste grátis</a>
+</nav>
+</div>
 </header>
 
-<main class="lim">
+<section style="background: #F5F7F9; border-bottom: 1px solid #E3E7EC; overflow: hidden">
+<div style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<img src="/assets/site/duostat-logo-horizontal.png" alt="DUOSTAT" style="display: block; height: 46px; margin: 0; width: auto; max-width: 100%; mix-blend-mode: multiply">
+<span style="background: #DDF0E4; color: #1C5A36; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 99px">Disponível</span>
+</div>
+<h1 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 46px; line-height: 1.12; color: #0B2A4A; text-wrap: balance">Software de CEP e MSA para a engenharia da qualidade</h1>
+<p style="margin: 0; font-size: 20px; color: #4A5560; max-width: 560px">Estudos de capacidade, cartas de controle e análise do sistema de medição conforme os manuais AIAG, com relatórios prontos para auditoria.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px">
+<a href="#teste" style="text-decoration: none; background: #F2622D; color: #FFFFFF; font-weight: 600; padding: 14px 24px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center">Teste grátis por 30 dias</a>
+<a href="/duostat/DUOSTAT.html" style="text-decoration: none; border: 1.5px solid #0B2A4A; color: #0B2A4A; font-weight: 600; padding: 13px 22px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center">Experimente online</a>
+</div>
+<p style="margin: 0; font-size: 15px; color: #5B6470">Não é necessário cartão de crédito.</p>
+</div>
+<img class="hero-mock" src="/assets/site/duostat-mockup-dispositivos.jpg" alt="DUOSTAT em monitor, notebook, tablet e smartphone, com estudos de capacidade e cartas de controle" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; mix-blend-mode: multiply; -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 78%, transparent 100%); mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 78%, transparent 100%)">
+</div>
+</section>
 
-  <div class="ds-abertura">
-    <div>
-      <span class="rotulo">Produto · DUOSTAT</span>
-      <h1 style="margin-top:20px">CEP e MSA com o cálculo <em>à vista</em>.</h1>
-      <p class="apoio">Capacidade, carta X̄-R, GR&amp;R, linearidade, estabilidade e tendência, com o passo a passo de cada número e a fonte de cada fórmula. Roda no computador da planta, e a medição fica com você.</p>
-      <div class="acoes">
-        <a class="btn laranja" href="DUOSTAT.html" download>Baixar o DUOSTAT <span class="seta"><svg><use href="#seta"></use></svg></span></a>
-        <a class="btn contorno" href="DUOSTAT.html" target="_blank" rel="noopener">Abrir no navegador <span class="seta"><svg><use href="#seta"></use></svg></span></a>
-      </div>
-      <div class="ds-fatos">
-        <span>Seis estudos</span><span>Conferido no manual AIAG MSA</span><span>Excel de ida e volta</span><span>Funciona sem internet</span><span class="ds-num" id="ds-versao">versão 1.0.0</span>
-      </div>
-    </div>
+<section id="como-funciona" style="background: #FFFFFF">
+<div style="max-width: 1120px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 80px">
+<h2 style="margin: 0; text-align: center; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.15; color: #1A2530">Por que o <span style="color: #0B2A4A; border-bottom: 4px solid #F2622D">DUOSTAT</span>?</h2>
 
-    <figure class="ds-calc" style="margin:0" aria-labelledby="c-titulo">
-      <div class="ds-calc-head"><b id="c-titulo">Capacidade · <span id="c-car">Diâmetro do furo</span></b><span id="c-spec" class="ds-num">8,00 ± 0,05 mm</span></div>
-      <svg id="c-hist" viewBox="0 0 520 180" role="img" aria-label="Histograma de 125 medições com os limites de especificação"></svg>
-      <ol class="ds-passos" id="c-passos"></ol>
-      <div class="ds-veredito">
-        <div class="ds-cpk"><small>Cpk</small><span id="c-cpk" class="ds-num">—</span></div>
-        <span class="ds-selo" id="c-selo">—</span>
-        <button class="ds-outra" type="button" id="c-outra">Outra amostra →</button>
-      </div>
-    </figure>
-  </div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px 56px">
+<div role="img" aria-label="Tela de coleta do DUOSTAT com as medições de quatro características" style="flex: 1 1 420px; min-width: 0; aspect-ratio: 16 / 10; border-radius: 18px; background: #DCE3EA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-print-coleta.jpg') left top / cover no-repeat"></div>
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 26px; line-height: 1.25; color: #0B2A4A">Importação direta do Excel</h3>
+<p style="margin: 0; color: #4A5560">Cole os dados da sua planilha e gere o estudo em minutos, com o cálculo detalhado passo a passo.</p>
+<p style="margin: 0; color: #4A5560">Seis estudos: capacidade (Cp, Cpk, Pp, Ppk), carta X̄-R, GR&amp;R, linearidade, estabilidade e tendência.</p>
+</div>
+</div>
 
-  <section id="estudos">
-    <div class="cabeca entra">
-      <span class="rotulo">Os seis estudos</span>
-      <h2>Cada estudo responde uma pergunta do chão de fábrica.</h2>
-    </div>
-    <div class="ds-estudos">
-      <article class="ds-estudo entra"><img src="img/capacidade.png" alt="" width="64" height="64"><span class="vista">CEP</span><h3>Capacidade do processo</h3><p>O processo faz a peça dentro da tolerância? Quatro métodos de coleta, incluindo peças consecutivas para Cm e Cmk.</p><span class="sai">Cp · Cpk · Pp · Ppk · Cm · Cmk</span></article>
-      <article class="ds-estudo entra"><img src="img/carta-xr.png" alt="" width="64" height="64"><span class="vista">CEP</span><h3>Carta X̄-R</h3><p>O processo está estável ao longo do tempo? Com carta I-MR para leitura individual.</p><span class="sai">X̄ · R · I-MR · limites de controle</span></article>
-      <article class="ds-estudo entra"><img src="img/grr.png" alt="" width="64" height="64"><span class="vista">MSA</span><h3>GR&amp;R</h3><p>Quanto da variação vem do instrumento e do avaliador? Pelos métodos ANOVA e Médias e Amplitudes.</p><span class="sai">%EV · %AV · %GRR · ndc</span></article>
-      <article class="ds-estudo entra"><img src="img/linearidade.png" alt="" width="64" height="64"><span class="vista">MSA</span><h3>Linearidade</h3><p>O erro do instrumento muda ao longo da faixa de medição?</p><span class="sai">inclinação · intercepto · banda</span></article>
-      <article class="ds-estudo entra"><img src="img/estabilidade.png" alt="" width="64" height="64"><span class="vista">MSA</span><h3>Estabilidade</h3><p>O instrumento mede igual hoje e daqui a um mês?</p><span class="sai">carta de controle do padrão</span></article>
-      <article class="ds-estudo entra"><img src="img/vies.png" alt="" width="64" height="64"><span class="vista">MSA</span><h3>Tendência</h3><p>A média das medições bate com o valor de referência?</p><span class="sai">tendência · teste t · %EV</span></article>
-    </div>
-  </section>
+<div style="display: flex; flex-wrap: wrap-reverse; flex-direction: row-reverse; align-items: center; gap: 32px 56px">
+<div role="img" aria-label="Resultado de um estudo de GR&amp;R no DUOSTAT, com a tabela ANOVA e os gráficos" style="flex: 1 1 420px; min-width: 0; aspect-ratio: 16 / 10; border-radius: 18px; background: #DCE3EA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-print-grr.jpg') left top / cover no-repeat"></div>
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 26px; line-height: 1.25; color: #0B2A4A">Conformidade com os manuais AIAG</h3>
+<p style="margin: 0; color: #4A5560">Métodos de cálculo conforme os manuais AIAG de CEP e MSA, validados contra os exemplos publicados.</p>
+<p style="margin: 0; color: #4A5560">Relatórios com gráficos, critérios de aceitação e identificação do instrumento, prontos para auditoria de cliente.</p>
+</div>
+</div>
 
-  <section>
-    <div class="ds-fontes">
-      <div class="ds-placar entra">
-        <span class="rotulo">Conferências automáticas</span>
-        <span class="g ds-num">44<span>/</span>44</span>
-        <p>exemplos resolvidos das fontes, refeitos pelo motor de cálculo a cada versão. Se um número muda, a versão não é publicada.</p>
-      </div>
-      <div>
-        <div class="cabeca entra" style="margin-bottom:22px">
-          <span class="rotulo">De onde vem cada fórmula</span>
-          <h2>Os números batem com os exemplos dos manuais.</h2>
-        </div>
-        <div class="ds-ref">
-          <div><b>AIAG, Measurement Systems Analysis, 4ª edição</b><span>tendência, linearidade, estabilidade e GR&amp;R pelos dois métodos</span></div>
-          <div><b>NIST/SEMATECH e-Handbook of Statistical Methods</b><span>índices de capacidade, seção 6.1.6</span></div>
-          <div><b>Botão "i" em cada termo</b><span>a definição, a fórmula e a página da fonte, para ensinar e para auditar</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px 56px">
+<div role="img" aria-label="Engenheiro de qualidade com paquímetro e notebook na sala de metrologia" style="flex: 1 1 420px; min-width: 0; aspect-ratio: 16 / 10; border-radius: 18px; background: #DCE3EA; display: flex; align-items: center; justify-content: center; padding: 24px; background: #DCE3EA url('/assets/site/duostat-dados-locais.jpg') center / cover no-repeat"></div>
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 26px; line-height: 1.25; color: #0B2A4A">Instalação local (on-premise)</h3>
+<p style="margin: 0; color: #4A5560">O software roda na infraestrutura da sua empresa, e os dados não saem da sua rede.</p>
+<p style="margin: 0; color: #4A5560">Controle de acesso gerenciado pelo TI da sua empresa.</p>
+</div>
+</div>
 
-  <section>
-    <div class="cabeca entra">
-      <span class="rotulo">Como se usa</span>
-      <h2>Do download ao relatório em três passos.</h2>
-    </div>
-    <div class="passos">
-      <article class="passo entra"><span class="n">Passo um</span><h3>Baixe e abra</h3><p>Um arquivo só, aberto no Chrome ou no Edge do computador da planta. Sem instalação e sem internet. Sem chave, ele funciona em modo demonstração.</p></article>
-      <article class="passo entra"><span class="n">Passo dois</span><h3>Receba a chave</h3><p>Teste de 30 dias grátis ou licença anual. A chave chega pelo e-mail informado no pedido.</p></article>
-      <article class="passo entra"><span class="n">Passo três</span><h3>Ative e use</h3><p>Clique em Inserir chave, cole e ative. Os seis estudos saem sem a marca de demonstração, com o relatório em Excel trazendo fórmula e fonte.</p></article>
-    </div>
-  </section>
+</div>
+</section>
 
-  <section id="licenca">
-    <div class="cabeca entra">
-      <span class="rotulo">Licença</span>
-      <h2>Uma licença por planta, para toda a equipe.</h2>
-    </div>
-    <div class="ds-planos">
-      <article class="ds-plano principal entra">
-        <h3>Licença anual</h3>
-        <span class="ds-preco">R$ 7.000 <small>/ano por planta</small></span>
-        <ul class="lista">
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Os seis estudos, usuários ilimitados</span></li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Chave válida por 12 meses, enviada por e-mail</span></li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Nota fiscal de serviço da DUO Soluções</span></li>
-        </ul>
-        <a class="btn" href="#teste" id="ds-comprar" data-pedido="anual">Comprar licença <span class="seta"><svg><use href="#seta"></use></svg></span></a>
-      </article>
-      <article class="ds-plano entra">
-        <h3>Teste</h3>
-        <span class="ds-preco">30 dias <small>grátis</small></span>
-        <ul class="lista">
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>A ferramenta completa, sem a marca de demonstração</span></li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Use com as suas medições reais</span></li>
-          <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Ao fim do teste, as planilhas continuam suas</span></li>
-        </ul>
-        <a class="btn contorno" href="#teste" data-pedido="teste">Pedir chave de teste <span class="seta"><svg><use href="#seta"></use></svg></span></a>
-      </article>
-    </div>
-  </section>
+<section id="exemplos" style="background: #F5F7F9; border-top: 1px solid #E3E7EC; border-bottom: 1px solid #E3E7EC">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px">
+<h2 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.15; color: #0B2A4A">Exemplos de análise</h2>
+<p style="margin: 0; font-size: 18px; color: #4A5560">Do registro das medições ao relatório final. Os dois exemplos estão disponíveis na demonstração.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px; background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 16px; padding: 32px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 26px; color: #0B2A4A">Estudo de capacidade (Cp e Cpk)</h3>
+<p style="margin: 0; color: #4A5560">Exemplo: diâmetro de um eixo usinado, especificação 25,00 ± 0,05 mm.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Medição do diâmetro de eixo usinado com micrômetro" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; display: flex; align-items: center; justify-content: center; padding: 18px; background: #DCE3EA url('/assets/site/duostat-coleta-eixo.jpg') center / cover no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">01</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Coleta</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Tabela de medições do diâmetro do eixo no DUOSTAT" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-ex1-tabela.jpg') center / contain no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">02</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Dados</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Plano de amostragem por subgrupos no DUOSTAT" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-ex1-esquema.jpg') center / contain no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">03</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Plano de amostragem</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Histograma do diâmetro do eixo com limites de especificação e índices Cp, Cpk, Pp e Ppk" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-ex1-histograma.jpg') center top / cover no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">04</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Resultado</span></div>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px; background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 16px; padding: 32px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 26px; color: #0B2A4A">Carta de controle X̄-R</h3>
+<p style="margin: 0; color: #4A5560">Exemplo: espessura de uma peça estampada, 25 subgrupos de 5 peças.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Medição da espessura de peça estampada com paquímetro digital" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; display: flex; align-items: center; justify-content: center; padding: 18px; background: #DCE3EA url('/assets/site/duostat-coleta-estampada.jpg') center / cover no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">01</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Coleta</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Tabela de subgrupos da espessura da peça estampada no DUOSTAT" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-ex2-tabela.jpg') center / contain no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">02</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Dados</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Plano de amostragem de 25 subgrupos de 5 peças no DUOSTAT" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-ex2-esquema.jpg') center / contain no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">03</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Plano de amostragem</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="Cartas X̄ e R da espessura da peça estampada, com um ponto fora do limite" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #DCE3EA; border: 1px solid #C7D0DA; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.06), 0 12px 32px -16px rgba(11, 42, 74, 0.25); background: #FFFFFF url('/assets/site/duostat-ex2-cartas.jpg') center top / cover no-repeat"></div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: #B4461C">04</span><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #0B2A4A">Resultado</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-  <section id="teste">
-    <div class="ds-pedido">
-      <div class="cabeca entra">
-        <span class="rotulo">Pedido</span>
-        <h2>Peça a sua chave.</h2>
-        <p>A chave de teste ou a proposta da licença chega pelo e-mail informado.</p>
-      </div>
-      <form class="ds-form entra" id="form-teste" action="https://formsubmit.co/duosolucoesam@gmail.com" method="POST">
-        <input type="hidden" name="_subject" id="f-assunto" value="DUOSTAT · pedido pelo site">
-        <input type="hidden" name="_next" value="https://duosolucoesam.com.br/duostat/obrigado/">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <div class="ds-campo cheio"><label for="f-pedido">O que você quer</label>
-          <select id="f-pedido" name="pedido" required style="height:44px;border:1px solid #D8CDB8;border-radius:8px;padding:0 10px;font:inherit;font-size:16px;background:#fff;color:var(--tinta)">
-            <option value="Chave de teste (30 dias)">Chave de teste, 30 dias grátis</option>
-            <option value="Licença anual">Licença anual, R$ 7.000</option>
-          </select></div>
-        <div class="ds-campo cheio"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" required autocomplete="organization"></div>
-        <div class="ds-campo"><label for="f-cnpj">CNPJ</label><input id="f-cnpj" name="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00"></div>
-        <div class="ds-campo"><label for="f-planta">Cidade da planta</label><input id="f-planta" name="planta" required autocomplete="address-level2"></div>
-        <div class="ds-campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" required autocomplete="name"></div>
-        <div class="ds-campo"><label for="f-cargo">Cargo</label><input id="f-cargo" name="cargo" required autocomplete="organization-title"></div>
-        <div class="ds-campo cheio"><label for="f-email">E-mail da empresa</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-        <div class="ds-campo cheio"><label for="f-codigo">Código do representante <small>(opcional)</small></label><input id="f-codigo" name="codigo" autocapitalize="characters" placeholder="Ex.: FRANK"></div>
-        <div class="pe">
-          <button class="btn laranja" type="submit">Enviar pedido <span class="seta"><svg><use href="#seta"></use></svg></span></button>
-          <span id="aviso-form" role="status"></span>
-        </div>
-      </form>
-    </div>
-  </section>
+<section id="planos" style="background: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 40px">
+<h2 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.15; color: #0B2A4A">Planos e preços</h2>
+<input type="radio" name="cobranca" id="cob-mensal"><input type="radio" name="cobranca" id="cob-anual" checked>
+<div class="cob-toggle" role="radiogroup" aria-label="Ciclo de cobrança" style="align-self: center; display: inline-flex; gap: 4px; padding: 4px; border: 1px solid #D5DCE3; border-radius: 99px; background: #F5F7F9"><label for="cob-mensal">Mensal</label><label for="cob-anual">Anual <span class="cob-selo" style="font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 99px; background: #E3F3E6; color: #1C5A36">2 meses grátis</span></label></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 20px; align-items: stretch">
+<div style="border: 1px solid #D5DCE3; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; background: #FFFFFF">
+<div role="img" aria-label="Estudante de engenharia analisando dados no notebook na biblioteca da faculdade" style="aspect-ratio: 3 / 2; background: #DCE3EA url('/assets/site/img-85f4c88f.jpg') center / cover no-repeat"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
+<span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 20px; color: #0B2A4A">Starter</span>
+<span style="font-size: 13px; color: #5B6470; font-weight: 600">Compra no site em breve</span>
+</div>
+<div class="so-anual" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 12 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado anualmente: R$ 144 por ano</span></div><div class="so-mensal" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 22px; color: #0B2A4A">Só no plano anual</span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">R$ 12 /mês, cobrado anualmente: R$ 144 por ano</span></div>
+<p style="margin: 0; color: #4A5560">Para estudantes de engenharia aprenderem CEP com dados reais.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>1 estudante, com comprovação de matrícula</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Capacidade e carta X̄-R</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Relatório com a marca "Uso educacional"</span></li>
+</ul>
+<a href="#teste" style="margin-top: auto; text-decoration: none; border: 1.5px solid #0B2A4A; color: #0B2A4A; font-weight: 600; padding: 12px 20px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center">Pedir proposta</a>
+</div>
+</div>
+<div style="border: 1px solid #D5DCE3; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; background: #FFFFFF">
+<div role="img" aria-label="Profissional de qualidade analisando carta de controle" style="aspect-ratio: 3 / 2; background: #DCE3EA; display: flex; align-items: center; justify-content: center; padding: 20px; color: #5B6470; font-weight: 600; text-align: center">Placeholder — foto do plano Plus</div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
+<span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 20px; color: #0B2A4A">Plus</span>
+<span style="font-size: 13px; color: #5B6470; font-weight: 600">Compra no site em breve</span>
+</div>
+<div class="so-anual" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 79 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado anualmente: R$ 948 por ano</span></div><div class="so-mensal" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 95 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado mensalmente</span></div>
+<p style="margin: 0; color: #4A5560">Para quem acompanha capacidade e carta de controle no dia a dia.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>1 usuário</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Capacidade e carta X̄-R</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Seu nome no relatório</span></li>
+</ul>
+<a href="#teste" style="margin-top: auto; text-decoration: none; border: 1.5px solid #0B2A4A; color: #0B2A4A; font-weight: 600; padding: 12px 20px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center">Pedir proposta</a>
+</div>
+</div>
+<div style="border: 1px solid #D5DCE3; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; background: #FFFFFF">
+<div role="img" aria-label="Engenheiro analisando dados no notebook" style="aspect-ratio: 3 / 2; background: #DCE3EA url('/assets/site/duostat-plano-pro.jpg') center / cover no-repeat"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
+<span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 20px; color: #0B2A4A">Pro</span>
+<span style="font-size: 13px; color: #5B6470; font-weight: 600">Compra no site em breve</span>
+</div>
+<div class="so-anual" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 149 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado anualmente: R$ 1.788 por ano</span></div><div class="so-mensal" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 179 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado mensalmente</span></div>
+<p style="margin: 0; color: #4A5560">Para o engenheiro ou consultor que faz todos os estudos de CEP e MSA.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>1 usuário</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Os seis estudos, incluindo GR&amp;R</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Seu nome no relatório</span></li>
+</ul>
+<a href="#teste" style="margin-top: auto; text-decoration: none; border: 1.5px solid #0B2A4A; color: #0B2A4A; font-weight: 600; padding: 12px 20px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center">Pedir proposta</a>
+</div>
+</div>
+<div style="border: 2px solid #0B2A4A; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; background: #F5F7F9">
+<div role="img" aria-label="Equipe da fábrica diante de monitores" style="aspect-ratio: 3 / 2; background: #DCE3EA url('/assets/site/duostat-plano-industrial.jpg') center / cover no-repeat"></div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
+<span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 20px; color: #0B2A4A">Industrial</span>
+<span style="background: #0B2A4A; color: #FFFFFF; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 99px">Fale com vendas</span>
+</div>
+<div class="so-anual" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 583 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês por planta</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado anualmente: R$ 7.000 por planta, até 5 usuários</span></div><div class="so-mensal" style="display: flex; flex-direction: column; gap: 14px"><span style="font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; color: #0B2A4A">R$ 699 <span style="font-size: 16px; font-weight: 600; color: #4A5560">/mês por planta</span></span><span style="font-size: 14px; color: #5B6470; margin-top: -8px">cobrado mensalmente</span></div>
+<p style="margin: 0; color: #4A5560">Para a engenharia da qualidade da planta inteira.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Até 5 usuários, ou ilimitados por R$ 12.000 por ano</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Os seis estudos e todos os recursos</span></li>
+<li style="display: flex; gap: 10px; align-items: flex-start; color: #26323E"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg><span>Logotipo da empresa no relatório</span></li>
+</ul>
+<a href="#teste" style="margin-top: auto; text-decoration: none; background: #F2622D; color: #FFFFFF; font-weight: 600; padding: 12px 20px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center">Fale com vendas</a>
+</div>
+</div>
+</div>
+<p style="margin: 0; font-size: 14px; color: #5B6470; text-align: center">Preços de lançamento. No plano anual você paga 10 meses e usa 12. Sem compromisso, o mensal custa cerca de 20% a mais.</p>
+<div style="overflow-x: auto; border: 1px solid #D5DCE3; border-radius: 14px; background: #FFFFFF">
+<table style="width: 100%; min-width: 760px; border-collapse: collapse; font-size: 16px">
+<caption style="text-align: left; padding: 18px 20px 4px; font-family: Montserrat, system-ui, sans-serif; font-weight: 700; font-size: 20px; color: #0B2A4A">Compare os planos</caption>
+<thead><tr style="text-align: left; border-bottom: 2px solid #0B2A4A">
+<th scope="col" style="padding: 14px 20px; color: #4A5560; font-weight: 600">Recurso</th>
+<th scope="col" style="padding: 14px 20px; font-family: Montserrat, system-ui, sans-serif; color: #0B2A4A">Starter</th>
+<th scope="col" style="padding: 14px 20px; font-family: Montserrat, system-ui, sans-serif; color: #0B2A4A">Plus</th>
+<th scope="col" style="padding: 14px 20px; font-family: Montserrat, system-ui, sans-serif; color: #0B2A4A">Pro</th>
+<th scope="col" style="padding: 14px 20px; font-family: Montserrat, system-ui, sans-serif; color: #0B2A4A; background: #F5F7F9">Industrial</th>
+</tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Usuários</th><td style="padding: 12px 20px"><span>1 estudante</span></td><td style="padding: 12px 20px"><span>1</span></td><td style="padding: 12px 20px"><span>1</span></td><td style="padding: 12px 20px; background: #F5F7F9"><span>Até 5 ou ilimitados</span></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Importação de dados do Excel</th><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Capacidade (Cp, Cpk, Pp, Ppk)</th><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Carta de controle X̄-R</th><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">GR&amp;R</th><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Linearidade</th><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Estabilidade</th><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Tendência</th><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Relatório em PDF</th><td style="padding: 12px 20px"><span>Uso educacional</span></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Nome do titular no relatório</th><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td><td style="padding: 12px 20px; background: #F5F7F9"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Logotipo da empresa no relatório</th><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px"><span aria-label="Não incluído" style="color: #9AA5B1; font-weight: 700">—</span></td><td style="padding: 12px 20px; background: #F5F7F9"><svg role="img" aria-label="Incluído" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1C7A44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"></path></svg></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Suporte</th><td style="padding: 12px 20px"><span>E-mail</span></td><td style="padding: 12px 20px"><span>E-mail</span></td><td style="padding: 12px 20px"><span>E-mail prioritário</span></td><td style="padding: 12px 20px; background: #F5F7F9"><span>E-mail e WhatsApp</span></td></tr>
+<tr style="border-top: 1px solid #E3E7EC"><th scope="row" style="padding: 12px 20px; text-align: left; font-weight: 400; color: #26323E">Preço anual</th><td style="padding: 12px 20px"><span>R$ 144</span></td><td style="padding: 12px 20px"><span>R$ 948</span></td><td style="padding: 12px 20px"><span>R$ 1.788</span></td><td style="padding: 12px 20px; background: #F5F7F9"><span>R$ 7.000 até 5 usuários · R$ 12.000 ilimitado</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 
-  <footer>
-    <span><b>DUO Soluções</b> · DUOSTAT<br>Ayna Caroline Marcião Vieira · CNPJ 68.463.489/0001-71</span>
-    <span>Manaus · Amazonas<br>Atendimento por WhatsApp<br><a href="../privacidade/">Privacidade</a> · <a href="../termos/">Termos de uso</a></span>
-  </footer>
-</main>
+<section id="duvidas" style="background: #F5F7F9; border-top: 1px solid #E3E7EC">
+<div style="max-width: 860px; margin: 0 auto; padding: 96px 24px; display: flex; flex-direction: column; gap: 24px">
+<h2 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.15; color: #0B2A4A">Perguntas frequentes</h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Meus dados ficam armazenados na nuvem?</summary><p style="margin: 12px 0 0; color: #4A5560">Os dados ficam no computador de quem usa. O DUOSTAT roda sem internet, e nenhuma medição é enviada à DUO.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Quais estudos o DUOSTAT faz?</summary><p style="margin: 12px 0 0; color: #4A5560">Capacidade (Cp, Cpk, Pp e Ppk), carta de controle X̄-R, GR&amp;R (por ANOVA ou por Médias e Amplitudes), linearidade, estabilidade e tendência. Cada resultado tem um botão "i" com a definição, a fórmula e a fonte.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Quantas licenças eu preciso?</summary><p style="margin: 12px 0 0; color: #4A5560">Nos planos Plus e Pro, uma licença por pessoa: o nome do titular sai impresso nos relatórios. No Industrial, uma licença por planta, para até 5 usuários ou para usuários ilimitados.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Como compro?</summary><p style="margin: 12px 0 0; color: #4A5560">Clique em "Pedir proposta". A proposta chega em até 1 dia útil. Depois do aceite ou do pedido de compra, a licença e a nota fiscal chegam por e-mail em até 1 dia útil.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Quais são as formas de pagamento?</summary><p style="margin: 12px 0 0; color: #4A5560">Pix ou transferência para o CNPJ da DUO, com nota fiscal. Na compra por proposta, o prazo de pagamento é combinado na própria proposta.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">A DUO emite nota fiscal?</summary><p style="margin: 12px 0 0; color: #4A5560">Sim. Emitimos nota fiscal de serviço (NFS-e) para o CNPJ da sua empresa.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Atualizações e suporte estão incluídos?</summary><p style="margin: 12px 0 0; color: #4A5560">Sim. Durante a vigência, você recebe as versões novas e tira dúvidas de uso por e-mail, com primeira resposta em até 1 dia útil. Consultoria estatística e treinamento presencial têm orçamento próprio.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">O que acontece quando a licença vence?</summary><p style="margin: 12px 0 0; color: #4A5560">O programa fica em modo somente leitura: você abre e exporta os estudos salvos, mas não cria estudos novos até renovar.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Posso trocar de plano?</summary><p style="margin: 12px 0 0; color: #4A5560">Sim. Você recebe um arquivo de licença novo e não precisa reinstalar nada.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Existe licença para estudante?</summary><p style="margin: 12px 0 0; color: #4A5560">Sim. O plano Starter custa R$ 12 por mês no plano anual, com comprovação de matrícula. Os relatórios saem com a marca "Uso educacional".</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">Posso repassar a licença para outra pessoa ou empresa?</summary><p style="margin: 12px 0 0; color: #4A5560">A licença é intransferível. Para mais pessoas, o caminho é outra licença Plus ou Pro, ou o Industrial para a planta inteira.</p></details>
+<details style="background: #FFFFFF; border: 1px solid #D5DCE3; border-radius: 8px; padding: 18px 22px"><summary style="font-weight: 600; cursor: pointer; color: #0B2A4A">O período de teste tem limitações?</summary><p style="margin: 12px 0 0; color: #4A5560">Durante os 30 dias, todos os recursos ficam liberados, sem cartão de crédito.</p></details>
+</div>
+</div>
+</section>
 
-<script>
-/* Pedido: o formulário vai por e-mail para a DUO (FormSubmit → duosolucoesam@gmail.com).
-   O código do representante vem do link ?rep=FRANK. ASAAS_LINK: quando existir o link de pagamento do Asaas,
-   o botão Comprar licença leva direto para ele; enquanto estiver vazio, leva ao formulário com Licença anual escolhida. */
-(function(){
-  const ASAAS_LINK = "";
-  const f = document.getElementById("form-teste"), sel = document.getElementById("f-pedido");
-  try{
-    const rep = new URLSearchParams(location.search).get("rep");
-    if (rep && /^[A-Za-z0-9-]{2,20}$/.test(rep)) document.getElementById("f-codigo").value = rep.toUpperCase();
-  }catch(e){}
-  document.querySelectorAll("[data-pedido]").forEach(a=>a.addEventListener("click", ()=>{
-    sel.value = a.dataset.pedido==="anual" ? "Licença anual" : "Chave de teste (30 dias)";
-  }));
-  const comprar = document.getElementById("ds-comprar");
-  if (ASAAS_LINK){ comprar.href = ASAAS_LINK; comprar.target = "_blank"; comprar.rel = "noopener"; comprar.removeAttribute("data-pedido"); }
-  f.addEventListener("submit", ()=>{
-    const cod = document.getElementById("f-codigo").value.trim().toUpperCase();
-    document.getElementById("f-assunto").value = "DUOSTAT · " + sel.value + " · " + (f.elements.empresa.value.trim()||"site") + (cod ? " · rep " + cod : "");
-  });
-})();
+<section id="teste" style="background: #0B2A4A">
+<div style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 48px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; color: #FFFFFF">Teste grátis, demonstração ou proposta</h2>
+<p style="margin: 0; font-size: 18px; color: #C9D4E0">Escolha o que você quer e responderemos pelo e-mail informado em até 1 dia útil. O teste de 30 dias segue com a licença e o guia de início.</p>
+</div>
+<form action="https://formsubmit.co/duosolucoesam@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 10px; padding: 28px">
+<input type="hidden" name="_subject" value="Site DUO — pedido DUOSTAT">
+<input type="hidden" name="_next" value="https://duosolucoesam.com.br/obrigado/">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="produto" value="DUOSTAT">
+<input type="text" name="_honey" style="display: none" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">O que você quer<select name="pedido" required style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"><option>Teste grátis de 30 dias</option><option>Proposta para a minha empresa</option><option>Demonstração com um especialista</option></select></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">Nome<input type="text" name="nome" required autocomplete="name" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">E-mail corporativo<input type="email" name="email" required autocomplete="email" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">Empresa<input type="text" name="empresa" required autocomplete="organization" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">Cargo<input type="text" name="cargo" autocomplete="organization-title" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"></label>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: #26323E"><input type="checkbox" name="aceite_privacidade" value="sim" required style="margin-top: 4px; width: 18px; height: 18px"><span>Li e aceito a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span></label>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: #26323E"><input type="checkbox" name="aceita_contato_comercial" value="sim" style="margin-top: 4px; width: 18px; height: 18px">Aceito receber contato comercial da DUO.</label>
+<button type="submit" style="font: inherit; font-weight: 600; background: #F2622D; color: #FFFFFF; border: 0; border-radius: 6px; padding: 14px 20px; min-height: 48px; cursor: pointer">Enviar pedido</button>
+<p style="margin: 0; font-size: 14px; color: #5B6470">Resposta em até 1 dia útil, pelo e-mail informado.</p>
+</form>
+</div>
+</section>
 
-/* O cálculo ao vivo: 25 subgrupos de 5, σ dentro por R̄/d₂ (d₂ = 2,326 para n = 5) */
-(function(){
-  const CENARIOS = [
-    {car:"Diâmetro do furo", unid:"mm", alvo:8.00, tol:0.05, mu:8.004, sg:0.0105, casas:3, esp:2},
-    {car:"Altura do terminal", unid:"mm", alvo:2.50, tol:0.10, mu:2.538, sg:0.019, casas:3, esp:2},
-    {car:"Torque do parafuso", unid:"N·m", alvo:4.0, tol:0.4, mu:4.02, sg:0.16, casas:2, esp:1},
-    {car:"Espessura da pasta de solda", unid:"µm", alvo:120, tol:20, mu:118, sg:4.6, casas:1, esp:0}
-  ];
-  let seed = 7, k = 0;
-  const rnd = ()=>{ seed = (seed*16807) % 2147483647; return (seed-1)/2147483646; };
-  const normal = ()=>{ let u=0,v=0; while(!u) u=rnd(); while(!v) v=rnd(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
-  const br = (x,c)=>x.toLocaleString("pt-BR",{minimumFractionDigits:c,maximumFractionDigits:c});
-  const NS = "http://www.w3.org/2000/svg";
-  const el = (t,a,p)=>{ const e=document.createElementNS(NS,t); for(const x in a) e.setAttribute(x,a[x]); p&&p.appendChild(e); return e; };
-  const XBB = "X̄̄";
+<footer style="background: #081E38; color: #AEBBCA; font-size: 15px">
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center">
+<img src="/assets/site/logo-duo-solucoes-reversa.svg" alt="DUO Soluções" style="height: 36px; width: auto; display: block">
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<span>DUO SOLUCOES LTDA · CNPJ 68.463.489/0001-71 · Avenida Américo Antony, 1924, Lote 200, Conj. 3, Sala 10, Japiim, CEP 69076-810, Manaus-AM</span>
+<a href="mailto:comercial@duosolucoesam.com.br" style="color: #DCE4ED">comercial@duosolucoesam.com.br</a>
+<a href="/privacidade/" style="color: #DCE4ED">Política de Privacidade</a>
+<a href="/termos/" style="color: #DCE4ED">Termos de Licença</a>
+</div>
+</div>
+</footer>
 
-  function rodar(){
-    const c = CENARIOS[k % CENARIOS.length];
-    const gs = Array.from({length:25},()=>Array.from({length:5},()=>c.mu + c.sg*normal()));
-    const medias = gs.map(g=>g.reduce((a,b)=>a+b,0)/5), amps = gs.map(g=>Math.max(...g)-Math.min(...g));
-    const xbb = medias.reduce((a,b)=>a+b,0)/25, rb = amps.reduce((a,b)=>a+b,0)/25, s = rb/2.326;
-    const lie = c.alvo-c.tol, lse = c.alvo+c.tol;
-    const cp = (lse-lie)/(6*s), cpk = Math.min(lse-xbb, xbb-lie)/(3*s), f = c.casas+1;
-    document.getElementById("c-car").textContent = c.car;
-    document.getElementById("c-spec").textContent = `${br(c.alvo,c.esp)} ± ${br(c.tol,c.esp)} ${c.unid}`;
-    document.getElementById("c-passos").innerHTML = [
-      [`Média das médias <i>${XBB}</i>`, br(xbb,f)],
-      [`Amplitude média <i>R̄</i>`, br(rb,f)],
-      [`σ dentro <i>= R̄ / d₂ = R̄ / 2,326</i>`, br(s,f)],
-      [`Cp <i>= (LSE − LIE) / 6σ</i>`, br(cp,2)],
-      [`Cpk <i>= mín(LSE − ${XBB}, ${XBB} − LIE) / 3σ</i>`, br(cpk,2)]
-    ].map(([a,b])=>`<li><span>${a}</span><span class="v">${b}</span></li>`).join("");
-    document.getElementById("c-cpk").textContent = br(cpk,2);
-    const selo = document.getElementById("c-selo");
-    selo.className = "ds-selo " + (cpk>=1.33 ? "ok" : "nok");
-    selo.textContent = cpk>=1.33 ? "Capaz · ≥ 1,33" : "Abaixo de 1,33";
-
-    const svg = document.getElementById("c-hist"); svg.replaceChildren();
-    const W=520,H=180,L=24,R=24,T=28,B=26, x0=c.alvo-1.5*c.tol, x1=c.alvo+1.5*c.tol;
-    const X = v=>L+(v-x0)/(x1-x0)*(W-L-R);
-    const nb=24, larg=(x1-x0)/nb, cont=new Array(nb).fill(0);
-    gs.flat().forEach(v=>{ const i=Math.floor((v-x0)/larg); if(i>=0&&i<nb) cont[i]++; });
-    const area=125*larg, pico=area/(s*Math.sqrt(2*Math.PI)), esc=Math.max(...cont,pico,1);
-    const Y = n=>H-B-(n/esc)*(H-B-T);
-    cont.forEach((n,i)=>{ if(n) el("rect",{class:"bar-h",x:X(x0+i*larg)+1,y:Y(n),width:X(x0+larg)-X(x0)-2,height:H-B-Y(n)},svg); });
-    let d=""; for(let j=0;j<=80;j++){ const v=x0+(x1-x0)*j/80, y=area*Math.exp(-((v-xbb)**2)/(2*s*s))/(s*Math.sqrt(2*Math.PI)); d+=(j?"L":"M")+X(v).toFixed(1)+","+Y(y).toFixed(1); }
-    el("path",{class:"curve",d},svg);
-    el("line",{class:"mean",x1:X(xbb),x2:X(xbb),y1:T-6,y2:H-B},svg);
-    [[lie,"LIE"],[lse,"LSE"]].forEach(([v,t])=>{ el("line",{class:"lim",x1:X(v),x2:X(v),y1:T-10,y2:H-B},svg); el("text",{class:"lt",x:X(v),y:T-14,"text-anchor":"middle"},svg).textContent=t; });
-    [x0,c.alvo,x1].forEach(v=>{ el("text",{class:"ax",x:X(v),y:H-8,"text-anchor":v===x0?"start":v===x1?"end":"middle"},svg).textContent=br(v,c.esp); });
-  }
-  document.getElementById("c-outra").addEventListener("click", ()=>{ k++; rodar(); });
-  rodar();
-})();
-</script>
+</div>
 </body>
 </html>
