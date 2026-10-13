@@ -6,6 +6,10 @@
 <title>DUOSTAT — CEP e MSA — DUO Soluções</title>
 <meta name="description" content="Capacidade, carta X̄-R, GR&R, linearidade, estabilidade e tendência, com o passo a passo de cada cálculo e a fonte de cada fórmula. Roda no computador da planta, sem internet.">
 <link rel="canonical" href="https://duosolucoesam.com.br/duostat/">
+<!-- Serviço de trial (Cloudflare Worker). Vazio: o pedido segue pelo FormSubmit. Preencher só junto com a publicação aprovada. -->
+<meta name="duostat-api" content="">
+<meta name="duostat-turnstile" content="">
+<meta name="duostat-politica" content="2026-10-10">
 <link rel="icon" href="../assets/favicon.png">
 <link rel="apple-touch-icon" href="../assets/icone_duo_512.png">
 <meta property="og:title" content="DUOSTAT — CEP e MSA com o cálculo à vista">
@@ -95,6 +99,20 @@
 .ds-form input:focus{outline:2px solid var(--navy);outline-offset:0;border-color:var(--navy)}
 .ds-form .pe{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .ds-form .pe span{font-size:14px;color:var(--tinta-md)}
+.ds-form select{height:44px;border:1px solid #D8CDB8;border-radius:8px;padding:0 10px;font:inherit;font-size:16px;background:#fff;color:var(--tinta);width:100%}
+.ds-form select:focus{outline:2px solid var(--navy);outline-offset:0;border-color:var(--navy)}
+.ds-form .cheio{grid-column:1 / -1}
+.ds-form [aria-invalid="true"]{border-color:#B42318;outline-color:#B42318}
+.ds-aceite{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--tinta-md)}
+.ds-aceite input{width:18px;height:18px;margin-top:3px;accent-color:var(--navy);flex:none}
+.ds-form .pe span.erro{color:#B42318}
+.ds-form button[disabled]{opacity:.6;cursor:progress}
+.ds-estado{background:var(--marfim-alto);border:2px solid var(--navy);border-radius:14px;padding:26px;box-shadow:var(--sombra-2)}
+.ds-estado h3{margin:10px 0 10px;font-size:21px;overflow-wrap:anywhere}
+.ds-estado p{margin:0;color:var(--tinta-md)}
+.ds-link{border:0;background:none;padding:0;font:inherit;color:var(--navy);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.ds-plano-acoes{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.ds-plano-acoes .btn{margin-top:0}
 
 @media (max-width:900px){
   .ds-abertura,.ds-fontes,.ds-pedido{grid-template-columns:1fr}
@@ -103,6 +121,12 @@
 @media (max-width:600px){
   .ds-estudos,.ds-planos,.ds-form{grid-template-columns:1fr}
 }
+.ds-faq{display:grid;gap:10px;max-width:820px}
+.ds-faq details{background:var(--marfim-alto);border:1px solid var(--fio);border-radius:12px;padding:16px 20px}
+.ds-faq summary{cursor:pointer;font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:var(--navy)}
+.ds-faq details p{margin:12px 0 0;color:var(--tinta-md)}
+.ds-semrisco{margin:14px 0 0;font-size:15px;color:var(--tinta-md)}
+.ds-semrisco a{color:var(--navy);font-weight:600;margin-left:6px}
 </style>
 </head>
 <body>
@@ -117,16 +141,15 @@
     <div class="marca">
       <a href="../"><img src="../assets/logo_duo_solucoes.svg" alt="DUO Soluções" width="118" height="40"></a>
     </div>
-    <nav>
-      <a href="../">Início</a>
-      <a href="../sistemas/" aria-current="page">Software</a>
-      <a href="../pecas-3d/">Impressão 3D</a>
-      <a href="../divulgacao/">Divulgação</a>
-      <a href="../portfolio/">Portfólio</a>
-      <a href="../duvidas/">Dúvidas</a>
+    <nav aria-label="DUOSTAT">
+      <a href="#estudos">Estudos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#licenca">Preço</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#teste">Teste</a>
     </nav>
-    <a class="btn pequeno laranja" href="DUOSTAT.html" download>
-      Baixar o DUOSTAT <span class="seta"><svg><use href="#seta"></use></svg></span>
+    <a class="btn pequeno laranja" href="#teste">
+      Testar 30 dias grátis <span class="seta"><svg><use href="#seta"></use></svg></span>
     </a>
   </div>
 </header>
@@ -139,9 +162,10 @@
       <h1 style="margin-top:20px">CEP e MSA com o cálculo <em>à vista</em>.</h1>
       <p class="apoio">Capacidade, carta X̄-R, GR&amp;R, linearidade, estabilidade e tendência, com o passo a passo de cada número e a fonte de cada fórmula. Roda no computador da planta, e a medição fica com você.</p>
       <div class="acoes">
-        <a class="btn laranja" href="DUOSTAT.html" download>Baixar o DUOSTAT <span class="seta"><svg><use href="#seta"></use></svg></span></a>
-        <a class="btn contorno" href="DUOSTAT.html" target="_blank" rel="noopener">Abrir no navegador <span class="seta"><svg><use href="#seta"></use></svg></span></a>
+        <a class="btn laranja" href="#teste">Testar 30 dias grátis <span class="seta"><svg><use href="#seta"></use></svg></span></a>
+        <a class="btn contorno" href="DUOSTAT.html" download>Baixar a demonstração <span class="seta"><svg><use href="#seta"></use></svg></span></a>
       </div>
+      <p class="ds-semrisco">Sem cartão. Sem instalação. A medição não sai do computador. <a href="DUOSTAT.html" target="_blank" rel="noopener">Abrir a demonstração no navegador</a></p>
       <div class="ds-fatos">
         <span>Seis estudos</span><span>Conferido no manual AIAG MSA</span><span>Excel de ida e volta</span><span>Funciona sem internet</span><span class="ds-num" id="ds-versao">versão 1.0.0</span>
       </div>
@@ -195,7 +219,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="como-funciona">
     <div class="cabeca entra">
       <span class="rotulo">Como se usa</span>
       <h2>Do download ao relatório em três passos.</h2>
@@ -221,7 +245,10 @@
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Chave válida por 12 meses, enviada por e-mail</span></li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Nota fiscal de serviço da DUO Soluções</span></li>
         </ul>
-        <a class="btn" href="#teste" id="ds-comprar" data-pedido="anual">Comprar licença <span class="seta"><svg><use href="#seta"></use></svg></span></a>
+        <div class="ds-plano-acoes">
+          <a class="btn" href="proposta/" id="ds-comprar" data-rep>Comprar licença <span class="seta"><svg><use href="#seta"></use></svg></span></a>
+          <a class="ds-link" href="proposta/" data-rep>Pedir proposta para a empresa</a>
+        </div>
       </article>
       <article class="ds-plano entra">
         <h3>Teste</h3>
@@ -231,7 +258,7 @@
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Use com as suas medições reais</span></li>
           <li><i class="ok"><svg><use href="#tick"></use></svg></i> <span>Ao fim do teste, as planilhas continuam suas</span></li>
         </ul>
-        <a class="btn contorno" href="#teste" data-pedido="teste">Pedir chave de teste <span class="seta"><svg><use href="#seta"></use></svg></span></a>
+        <a class="btn contorno" href="#teste">Pedir chave de teste <span class="seta"><svg><use href="#seta"></use></svg></span></a>
       </article>
     </div>
   </section>
@@ -239,61 +266,144 @@
   <section id="teste">
     <div class="ds-pedido">
       <div class="cabeca entra">
-        <span class="rotulo">Pedido</span>
-        <h2>Peça a sua chave.</h2>
-        <p>A chave de teste ou a proposta da licença chega pelo e-mail informado.</p>
+        <span class="rotulo">Teste de 30 dias</span>
+        <h2>Peça a chave de teste.</h2>
+        <p>Confirme o e-mail pelo link que enviamos e a chave de 30 dias é emitida na hora, com os seis estudos liberados.</p>
       </div>
-      <form class="ds-form entra" id="form-teste" action="https://formsubmit.co/duosolucoesam@gmail.com" method="POST">
-        <input type="hidden" name="_subject" id="f-assunto" value="DUOSTAT · pedido pelo site">
-        <input type="hidden" name="_next" value="https://duosolucoesam.com.br/duostat/obrigado/">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <div class="ds-campo cheio"><label for="f-pedido">O que você quer</label>
-          <select id="f-pedido" name="pedido" required style="height:44px;border:1px solid #D8CDB8;border-radius:8px;padding:0 10px;font:inherit;font-size:16px;background:#fff;color:var(--tinta)">
-            <option value="Chave de teste (30 dias)">Chave de teste, 30 dias grátis</option>
-            <option value="Licença anual">Licença anual, R$ 7.000</option>
-          </select></div>
-        <div class="ds-campo cheio"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" required autocomplete="organization"></div>
-        <div class="ds-campo"><label for="f-cnpj">CNPJ</label><input id="f-cnpj" name="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00"></div>
-        <div class="ds-campo"><label for="f-planta">Cidade da planta</label><input id="f-planta" name="planta" required autocomplete="address-level2"></div>
-        <div class="ds-campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" required autocomplete="name"></div>
-        <div class="ds-campo"><label for="f-cargo">Cargo</label><input id="f-cargo" name="cargo" required autocomplete="organization-title"></div>
-        <div class="ds-campo cheio"><label for="f-email">E-mail da empresa</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-        <div class="ds-campo cheio"><label for="f-codigo">Código do representante <small>(opcional)</small></label><input id="f-codigo" name="codigo" autocapitalize="characters" placeholder="Ex.: FRANK"></div>
-        <div class="pe">
-          <button class="btn laranja" type="submit">Enviar pedido <span class="seta"><svg><use href="#seta"></use></svg></span></button>
-          <span id="aviso-form" role="status"></span>
+      <div class="entra">
+        <!-- Sem o serviço de trial configurado (meta duostat-api vazia), o formulário segue pelo FormSubmit, como antes. -->
+        <form class="ds-form" id="form-teste" action="https://formsubmit.co/duosolucoesam@gmail.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" id="f-assunto" value="DUOSTAT · teste de 30 dias">
+          <input type="hidden" name="_next" value="https://duosolucoesam.com.br/duostat/obrigado/">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="rep" id="f-rep">
+          <div class="ds-campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" required maxlength="80" autocomplete="name"></div>
+          <div class="ds-campo"><label for="f-cargo">Cargo</label><input id="f-cargo" name="cargo" required maxlength="80" autocomplete="organization-title"></div>
+          <div class="ds-campo cheio"><label for="f-email">E-mail da empresa</label><input id="f-email" name="email" type="email" required maxlength="254" autocomplete="email"></div>
+          <div class="ds-campo cheio"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" required maxlength="120" autocomplete="organization"></div>
+          <div class="ds-campo cheio"><label for="f-estudo">Estudo de maior interesse</label>
+            <select id="f-estudo" name="estudo" required>
+              <option value="">Escolha um estudo</option>
+              <option>Capacidade</option><option>Carta X̄-R</option><option>GR&amp;R</option>
+              <option>Linearidade</option><option>Estabilidade</option><option>Tendência</option><option>Ainda não sei</option>
+            </select></div>
+          <label class="ds-aceite cheio"><input type="checkbox" id="f-aceite" name="aceite" value="sim" required> <span>Li e aceito a <a href="../privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</span></label>
+          <div class="cheio" id="f-turnstile"></div>
+          <div class="pe">
+            <button class="btn laranja" type="submit" id="f-enviar">Pedir chave de teste <span class="seta"><svg><use href="#seta"></use></svg></span></button>
+            <span id="aviso-form" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+        <div class="ds-estado" id="ds-confirme" hidden tabindex="-1">
+          <span class="rotulo">Confira sua caixa de entrada</span>
+          <h3>Enviamos o link de confirmação para <span id="ds-email-enviado"></span>.</h3>
+          <p>Abra o e-mail e clique em <b>Confirmar e receber a chave</b>. O link vale por duas horas. Se ele não aparecer em alguns minutos, confira a pasta de spam ou <button type="button" class="ds-link" id="ds-de-novo">peça de novo</button>.</p>
         </div>
-      </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="duvidas">
+    <div class="cabeca entra">
+      <span class="rotulo">Dúvidas</span>
+      <h2>O que Compras e TI costumam perguntar.</h2>
+    </div>
+    <div class="ds-faq">
+      <details class="entra"><summary>O que conta como uma planta?</summary>
+        <p>Uma planta é um CNPJ com um endereço. Dentro dela, a licença vale para quantos usuários e computadores a equipe precisar. Outra planta, mesmo da mesma empresa, usa outra licença.</p></details>
+      <details class="entra"><summary>Como funciona a renovação?</summary>
+        <p>A chave vale 12 meses a partir da entrega. Antes do vencimento, a DUO envia a proposta de renovação, e a chave nova chega por e-mail depois do pedido de compra ou do pagamento.</p></details>
+      <details class="entra"><summary>O que acontece se a licença vencer?</summary>
+        <p>O DUOSTAT volta ao modo de demonstração: os estudos continuam abrindo, e o Excel gravado a partir daí sai com a marca "DEMONSTRAÇÃO". As planilhas exportadas durante a vigência continuam suas, sem marca.</p></details>
+      <details class="entra"><summary>Os dados de medição saem da empresa?</summary>
+        <p>Os dados ficam no computador de quem usa. O DUOSTAT é um arquivo único que roda no navegador, sem instalação e sem internet, e a chave de licença é conferida no próprio computador.</p></details>
+      <details class="entra"><summary>Dá para usar os resultados no Excel e em auditoria?</summary>
+        <p>Cada estudo exporta um Excel com os dados, os resultados e os gráficos. Os cálculos seguem os manuais de referência da AIAG, e os números batem com os exemplos resolvidos desses manuais.</p></details>
+      <details class="entra"><summary>Como a empresa compra?</summary>
+        <p>Pela proposta: a DUO envia a proposta com validade e condição de pagamento, a empresa emite o pedido de compra, a chave é entregue na hora e a nota fiscal de serviço sai da DUO Soluções, com pagamento em 30 dias.</p></details>
+      <details class="entra"><summary>O que precisa ser instalado na planta?</summary>
+        <p>Nada. O DUOSTAT abre no navegador que a empresa já usa, como Edge ou Chrome. TI não precisa liberar instalação, servidor ou acesso à internet.</p></details>
+      <details class="entra"><summary>O suporte está incluído?</summary>
+        <p>Durante a vigência, a licença inclui atualizações, correção de defeito e dúvidas de uso por e-mail, com primeira resposta em até um dia útil. Consultoria estatística, montagem de estudo e treinamento têm orçamento próprio.</p></details>
     </div>
   </section>
 
   <footer>
-    <span><b>DUO Soluções</b> · DUOSTAT<br>Ayna Caroline Marcião Vieira · CNPJ 68.463.489/0001-71</span>
-    <span>Manaus · Amazonas<br>Atendimento por WhatsApp<br><a href="../privacidade/">Privacidade</a> · <a href="../termos/">Termos de uso</a></span>
+    <span><b>DUO Soluções</b> · DUOSTAT<br>DUO SOLUCOES LTDA · CNPJ 68.463.489/0001-71</span>
+    <span>Manaus · Amazonas<br><a href="mailto:comercial@duosolucoesam.com.br">comercial@duosolucoesam.com.br</a><br><a href="../privacidade/">Privacidade</a> · <a href="../termos/">Termos de uso</a></span>
   </footer>
 </main>
 
 <script>
-/* Pedido: o formulário vai por e-mail para a DUO (FormSubmit → duosolucoesam@gmail.com).
-   O código do representante vem do link ?rep=FRANK. ASAAS_LINK: quando existir o link de pagamento do Asaas,
-   o botão Comprar licença leva direto para ele; enquanto estiver vazio, leva ao formulário com Licença anual escolhida. */
+/* Pedido de teste. Com a meta duostat-api preenchida, o formulário vai para o serviço de trial
+   (Worker → confirmação por e-mail → chave de 30 dias). Vazia, segue pelo FormSubmit, que é a transição.
+   O código do representante vem do link ?rep=FRANK e acompanha o pedido, a proposta e a licença.
+   ASAAS_LINK: com o link de pagamento do Asaas, Comprar licença abre o pagamento; vazio, leva à proposta. */
 (function(){
   const ASAAS_LINK = "";
-  const f = document.getElementById("form-teste"), sel = document.getElementById("f-pedido");
+  const meta = n=>{ const m = document.querySelector(`meta[name="${n}"]`); return m ? m.content.trim() : ""; };
+  const API = meta("duostat-api"), SITEKEY = meta("duostat-turnstile"), POLITICA = meta("duostat-politica");
+  const f = document.getElementById("form-teste"), aviso = document.getElementById("aviso-form"), botao = document.getElementById("f-enviar");
+  const confirme = document.getElementById("ds-confirme");
+
+  let rep = "";
   try{
-    const rep = new URLSearchParams(location.search).get("rep");
-    if (rep && /^[A-Za-z0-9-]{2,20}$/.test(rep)) document.getElementById("f-codigo").value = rep.toUpperCase();
+    const r = new URLSearchParams(location.search).get("rep");
+    if (r && /^[A-Za-z0-9-]{2,20}$/.test(r)) rep = r.toUpperCase();
   }catch(e){}
-  document.querySelectorAll("[data-pedido]").forEach(a=>a.addEventListener("click", ()=>{
-    sel.value = a.dataset.pedido==="anual" ? "Licença anual" : "Chave de teste (30 dias)";
-  }));
+  document.getElementById("f-rep").value = rep;
+  if (rep) document.querySelectorAll("a[data-rep]").forEach(a=>{ const u = new URL(a.href); u.searchParams.set("rep", rep); a.href = u.href; });
   const comprar = document.getElementById("ds-comprar");
-  if (ASAAS_LINK){ comprar.href = ASAAS_LINK; comprar.target = "_blank"; comprar.rel = "noopener"; comprar.removeAttribute("data-pedido"); }
-  f.addEventListener("submit", ()=>{
-    const cod = document.getElementById("f-codigo").value.trim().toUpperCase();
-    document.getElementById("f-assunto").value = "DUOSTAT · " + sel.value + " · " + (f.elements.empresa.value.trim()||"site") + (cod ? " · rep " + cod : "");
+  if (ASAAS_LINK){ comprar.href = ASAAS_LINK; comprar.target = "_blank"; comprar.rel = "noopener"; comprar.removeAttribute("data-rep"); }
+
+  const avisar = (txt, erro)=>{ aviso.textContent = txt; aviso.classList.toggle("erro", !!erro); };
+  const marcar = campo=>{
+    f.querySelectorAll("[aria-invalid]").forEach(c=>c.removeAttribute("aria-invalid"));
+    const c = campo && f.elements[campo]; if (c){ c.setAttribute("aria-invalid", "true"); c.focus(); }
+  };
+
+  let widget = null;
+  if (API && SITEKEY){
+    window.duostatTurnstile = ()=>{ widget = turnstile.render("#f-turnstile", {sitekey: SITEKEY, language: "pt-br", appearance: "interaction-only"}); };
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=duostatTurnstile";
+    s.async = true; s.defer = true; document.head.appendChild(s);
+  }
+
+  f.addEventListener("submit", async e=>{
+    const invalido = [...f.elements].find(c=>c.willValidate && !c.checkValidity());
+    if (invalido){ e.preventDefault(); marcar(invalido.name); avisar(invalido.name==="aceite" ? "Para receber a chave, aceite a política de privacidade." : "Confira o campo destacado.", true); return; }
+    if (!API){
+      document.getElementById("f-assunto").value = "DUOSTAT · teste de 30 dias · " + f.elements.empresa.value.trim() + (rep ? " · rep " + rep : "");
+      return;   /* segue pelo FormSubmit */
+    }
+    e.preventDefault();
+    const token = widget !== null && window.turnstile ? turnstile.getResponse(widget) : (SITEKEY ? "" : "local");
+    if (!token){ avisar("Aguarde a verificação de segurança terminar e envie de novo.", true); return; }
+    botao.disabled = true; avisar("Enviando…");
+    const corpo = {
+      nome: f.elements.nome.value, email: f.elements.email.value, empresa: f.elements.empresa.value, cargo: f.elements.cargo.value,
+      estudo: f.elements.estudo.value, aceite: f.elements.aceite.checked, politica_versao: POLITICA,
+      rep, origem: location.pathname + location.search, idioma: "pt-BR", turnstile: token
+    };
+    try{
+      const r = await fetch(API + "/api/trial", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(corpo)});
+      const j = await r.json().catch(()=>({}));
+      if (r.status === 202){
+        document.getElementById("ds-email-enviado").textContent = corpo.email.trim().toLowerCase();
+        f.hidden = true; confirme.hidden = false; confirme.focus(); avisar("");
+      } else {
+        marcar(j.campo); avisar(j.mensagem || "Não foi possível enviar agora. Tente de novo em alguns minutos.", true);
+      }
+    }catch(err){
+      avisar("Sem conexão com o serviço. Confira a internet e tente de novo.", true);
+    }finally{
+      botao.disabled = false;
+      if (widget !== null && window.turnstile) turnstile.reset(widget);
+    }
   });
+  document.getElementById("ds-de-novo").addEventListener("click", ()=>{ confirme.hidden = true; f.hidden = false; f.elements.email.focus(); });
 })();
 
 /* O cálculo ao vivo: 25 subgrupos de 5, σ dentro por R̄/d₂ (d₂ = 2,326 para n = 5) */

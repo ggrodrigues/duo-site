@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirmar e-mail — DUOSTAT — DUO Soluções</title>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<!-- Mesmo endereço da meta duostat-api da página /duostat/. -->
+<meta name="duostat-api" content="">
+<link rel="icon" href="../../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+.cf-painel{max-width:640px}
+.cf-painel[hidden]{display:none}
+.cf-chave{width:100%;min-height:110px;font:13px/1.45 "JetBrains Mono",Consolas,monospace;border:1px solid #D8CDB8;border-radius:8px;padding:12px;background:#fff;color:var(--tinta);resize:vertical;word-break:break-all}
+.cf-passos{margin:18px 0 0;padding-left:20px;color:var(--tinta-md)}
+.cf-passos li{margin:6px 0}
+.cf-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.cf-msg{min-height:1.4em;margin-top:12px;color:var(--tinta-md)}
+.cf-msg.erro{color:#B42318}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="seta" viewBox="0 0 16 16"><path d="M6 3.2 10.8 8 6 12.8l-1.1-1.1L8.6 8 4.9 4.3z"/></symbol>
+</defs></svg>
+<header class="barra">
+  <div class="barra-in">
+    <div class="marca"><a href="../../"><img src="../../assets/logo_duo_solucoes.svg" alt="DUO Soluções" width="118" height="40"></a></div>
+  </div>
+</header>
+<main class="lim">
+  <div class="abertura">
+    <span class="rotulo">DUOSTAT · teste de 30 dias</span>
+
+    <section class="cf-painel" id="p-confirmar" hidden>
+      <h1>Confirme seu e-mail.</h1>
+      <p class="apoio">Ao confirmar, a chave de teste de 30 dias é emitida e enviada para o seu e-mail.</p>
+      <div class="cf-acoes"><button class="btn laranja" type="button" id="b-confirmar">Confirmar e receber a chave <span class="seta"><svg><use href="#seta"></use></svg></span></button></div>
+      <p class="cf-msg" id="m-confirmar" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="cf-painel" id="p-chave" hidden tabindex="-1">
+      <h1 id="t-chave">Chave emitida.</h1>
+      <p class="apoio" id="a-chave"></p>
+      <label for="c-chave" class="rotulo" style="display:block;margin-top:18px">Chave de licença</label>
+      <textarea class="cf-chave" id="c-chave" readonly spellcheck="false"></textarea>
+      <div class="cf-acoes">
+        <button class="btn" type="button" id="b-copiar">Copiar chave</button>
+        <a class="btn contorno" href="../DUOSTAT.html" download>Baixar o DUOSTAT <span class="seta"><svg><use href="#seta"></use></svg></span></a>
+      </div>
+      <p class="cf-msg" id="m-copiar" role="status" aria-live="polite"></p>
+      <ol class="cf-passos">
+        <li>Abra o DUOSTAT no Chrome ou no Edge.</li>
+        <li>Clique em <b>Inserir chave</b>, no canto inferior direito.</li>
+        <li>Cole a chave inteira e clique em <b>Ativar</b>.</li>
+      </ol>
+    </section>
+
+    <section class="cf-painel" id="p-aviso" hidden tabindex="-1">
+      <h1 id="t-aviso"></h1>
+      <p class="apoio" id="a-aviso"></p>
+      <div class="cf-acoes"><a class="btn laranja" href="../#teste">Pedir de novo <span class="seta"><svg><use href="#seta"></use></svg></span></a></div>
+    </section>
+  </div>
+</main>
+<script>
+/* O token chega depois do # para não ir a servidor nenhum ao abrir a página, e sai da barra de endereço na hora.
+   A confirmação só acontece no clique: o antivírus do e-mail corporativo abre links sozinho e queimaria o token. */
+(function(){
+  const API = (document.querySelector('meta[name="duostat-api"]').content || "").trim();
+  const token = (new URLSearchParams(location.hash.slice(1)).get("t") || "").trim();
+  try { history.replaceState(null, "", location.pathname); } catch(e){}
+  const $ = id=>document.getElementById(id);
+  const br = iso=>iso.split("-").reverse().join("/");
+  const AVISOS = {
+    link_usado: ["Este link já foi usado.", "A chave foi enviada para o seu e-mail na primeira confirmação. Para receber outra cópia, peça de novo com o mesmo e-mail."],
+    expirado: ["Este link venceu.", "O link de confirmação vale por duas horas. Peça de novo com o mesmo e-mail e um link novo chega em seguida."],
+    invalido: ["Link de confirmação inválido.", "Confira se o link do e-mail foi aberto inteiro, ou peça de novo."]
+  };
+  const mostrar = id=>{ ["p-confirmar","p-chave","p-aviso"].forEach(p=>$(p).hidden = p !== id); if (id !== "p-confirmar") $(id).focus(); };
+  const aviso = estado=>{ const [t, a] = AVISOS[estado] || AVISOS.invalido; $("t-aviso").textContent = t; $("a-aviso").textContent = a; mostrar("p-aviso"); };
+
+  if (!/^[A-Za-z0-9_-]{43}$/.test(token) || !API){ aviso("invalido"); return; }
+  mostrar("p-confirmar");
+
+  $("b-confirmar").addEventListener("click", async ()=>{
+    const b = $("b-confirmar"), m = $("m-confirmar");
+    b.disabled = true; m.className = "cf-msg"; m.textContent = "Confirmando…";
+    try{
+      const r = await fetch(API + "/api/confirmar", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({token})});
+      const j = await r.json().catch(()=>({}));
+      if (r.ok && j.licenca){
+        $("t-chave").textContent = j.estado === "existente" ? "Seu teste já estava ativo." : "Chave emitida.";
+        $("a-chave").textContent = `Licença ${j.licenca.codigo}, válida até ${br(j.licenca.ate)}. ` +
+          (j.estado === "existente" ? "É a mesma chave enviada antes para o seu e-mail." : "Uma cópia segue para o seu e-mail.");
+        $("c-chave").value = j.licenca.chave;
+        mostrar("p-chave");
+      } else if (AVISOS[j.estado]){
+        aviso(j.estado);
+      } else {
+        m.className = "cf-msg erro"; m.textContent = j.mensagem || "Não foi possível confirmar agora. Tente de novo em alguns minutos."; b.disabled = false;
+      }
+    }catch(e){
+      m.className = "cf-msg erro"; m.textContent = "Sem conexão com o serviço. Confira a internet e tente de novo."; b.disabled = false;
+    }
+  });
+
+  $("b-copiar").addEventListener("click", async ()=>{
+    const c = $("c-chave"), m = $("m-copiar");
+    try { await navigator.clipboard.writeText(c.value); m.textContent = "Chave copiada."; }
+    catch(e){ c.select(); m.textContent = "Selecione a chave e copie com Ctrl+C."; }
+  });
+})();
+</script>
+</body>
+</html>
