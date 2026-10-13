@@ -288,6 +288,7 @@ a{color:#0B2A4A}a:hover{color:#F2622D}
 <input type="hidden" name="_next" value="https://duosolucoesam.com.br/obrigado/">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="produto" value="DUOSTAT">
+<input type="hidden" name="representante" class="campo-rep" value="">
 <input type="text" name="_honey" style="display: none" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">O que você quer<select name="pedido" required style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"><option>Teste grátis de 30 dias</option><option>Proposta para a minha empresa</option><option>Demonstração com um especialista</option></select></label>
 <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">Nome<input type="text" name="nome" required autocomplete="name" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"></label>
@@ -315,5 +316,23 @@ a{color:#0B2A4A}a:hover{color:#F2622D}
 </footer>
 
 </div>
+<script>
+/* Representante: um link com ?rep=CODIGO marca o visitante por 90 dias; vale o primeiro representante.
+   Só códigos cadastrados valem. Quem é cada código fica no cadastro interno da DUO, fora do site. */
+(function () {
+  var CODIGOS = ["b2q5s3"];
+  var K = "duo_rep", D = 90 * 864e5, agora = Date.now(), salvo = null;
+  try { salvo = JSON.parse(localStorage.getItem(K) || "null"); } catch (e) {}
+  if (salvo && (agora - salvo.em > D || CODIGOS.indexOf(salvo.rep) < 0)) salvo = null;
+  var p = (new URLSearchParams(location.search).get("rep") || "").toLowerCase();
+  if (p && CODIGOS.indexOf(p) >= 0 && !salvo) {
+    salvo = { rep: p, em: agora };
+    try { localStorage.setItem(K, JSON.stringify(salvo)); } catch (e) {}
+  }
+  if (salvo) document.querySelectorAll(".campo-rep").forEach(function (c) {
+    c.value = "código " + salvo.rep + ", link aberto em " + new Date(salvo.em).toLocaleDateString("pt-BR");
+  });
+})();
+</script>
 </body>
 </html>
