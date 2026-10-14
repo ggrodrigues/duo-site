@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirmar e-mail — DUOSTAT — DUO Soluções</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/assets/favicon.png">
+<style>
+body{margin:0;font:17px/1.6 "Source Sans 3",system-ui,sans-serif;color:#1A2530;background:#F4F6F9}
+main{max-width:640px;margin:0 auto;padding:40px 16px}
+.rotulo{font-size:13px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:#F2622D}
+section{background:#fff;border-radius:10px;padding:24px;margin-top:12px}
+h1{font:800 26px/1.2 Montserrat,system-ui,sans-serif;color:#0B2A4A;margin:0 0 8px}
+p{margin:0;color:#4A5560}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.btn{font:inherit;font-weight:600;background:#F2622D;color:#fff;border:0;border-radius:6px;padding:12px 20px;min-height:48px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn.contorno{background:transparent;color:#0B2A4A;border:1px solid #0B2A4A}
+.btn:disabled{opacity:.6}
+textarea{width:100%;box-sizing:border-box;min-height:110px;margin-top:16px;font:13px/1.45 Consolas,monospace;border:1px solid #B9C3CE;border-radius:8px;padding:12px;word-break:break-all;resize:vertical}
+ol{margin:18px 0 0;padding-left:20px;color:#4A5560}
+.msg{min-height:1.4em;margin-top:12px}
+.msg.erro{color:#B42318}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<span class="rotulo">DUOSTAT · teste de 30 dias</span>
+
+<section id="p-confirmar" hidden>
+<h1>Confirme seu e-mail.</h1>
+<p>Ao confirmar, a chave de teste de 30 dias é emitida e enviada para o seu e-mail.</p>
+<div class="acoes"><button class="btn" type="button" id="b-confirmar">Confirmar e receber a chave</button></div>
+<p class="msg" id="m-confirmar" role="status" aria-live="polite"></p>
+</section>
+
+<section id="p-chave" hidden tabindex="-1">
+<h1 id="t-chave">Chave emitida.</h1>
+<p id="a-chave"></p>
+<textarea id="c-chave" readonly spellcheck="false" aria-label="Chave de licença"></textarea>
+<div class="acoes">
+<button class="btn" type="button" id="b-copiar">Copiar chave</button>
+<a class="btn contorno" href="/duostat/DUOSTAT.html" download>Baixar o DUOSTAT</a>
+</div>
+<p class="msg" id="m-copiar" role="status" aria-live="polite"></p>
+<ol>
+<li>Abra o DUOSTAT no Chrome ou no Edge.</li>
+<li>Clique em <b>Inserir chave</b>, no canto inferior direito.</li>
+<li>Cole a chave inteira e clique em <b>Ativar</b>.</li>
+</ol>
+</section>
+
+<section id="p-aviso" hidden tabindex="-1">
+<h1 id="t-aviso"></h1>
+<p id="a-aviso"></p>
+</section>
+</main>
+
+<script>
+/* O token chega depois do # para não ir a servidor nenhum ao abrir a página, e sai da barra de endereço na hora.
+   A confirmação só acontece no clique: o antivírus do e-mail corporativo abre links sozinho e queimaria o token. */
+(function(){
+  const API = "https://api.duosolucoesam.com.br";
+  const token = (new URLSearchParams(location.hash.slice(1)).get("t") || "").trim();
+  try { history.replaceState(null, "", location.pathname); } catch(e){}
+  const $ = id=>document.getElementById(id);
+  const br = iso=>iso.split("-").reverse().join("/");
+  const AVISOS = {
+    link_usado: ["Este link já foi usado.", "A chave foi enviada para o seu e-mail na primeira confirmação."],
+    expirado: ["Este link venceu.", "O link de confirmação vale por duas horas. Peça de novo com o mesmo e-mail."],
+    invalido: ["Link de confirmação inválido.", "Confira se o link do e-mail foi aberto inteiro."]
+  };
+  const mostrar = id=>{ ["p-confirmar","p-chave","p-aviso"].forEach(p=>$(p).hidden = p !== id); if (id !== "p-confirmar") $(id).focus(); };
+  const aviso = estado=>{ const [t, a] = AVISOS[estado] || AVISOS.invalido; $("t-aviso").textContent = t; $("a-aviso").textContent = a; mostrar("p-aviso"); };
+
+  if (!/^[A-Za-z0-9_-]{43}$/.test(token)){ aviso("invalido"); return; }
+  mostrar("p-confirmar");
+
+  $("b-confirmar").addEventListener("click", async ()=>{
+    const b = $("b-confirmar"), m = $("m-confirmar");
+    b.disabled = true; m.className = "msg"; m.textContent = "Confirmando…";
+    try{
+      const r = await fetch(API + "/api/confirmar", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({token})});
+      const j = await r.json().catch(()=>({}));
+      if (r.ok && j.licenca){
+        $("t-chave").textContent = j.estado === "existente" ? "Seu teste já estava ativo." : "Chave emitida.";
+        $("a-chave").textContent = `Licença ${j.licenca.codigo}, válida até ${br(j.licenca.ate)}. ` +
+          (j.estado === "existente" ? "É a mesma chave enviada antes para o seu e-mail." : "Uma cópia segue para o seu e-mail.");
+        $("c-chave").value = j.licenca.chave;
+        mostrar("p-chave");
+      } else if (AVISOS[j.estado]){
+        aviso(j.estado);
+      } else {
+        m.className = "msg erro"; m.textContent = j.mensagem || "Não foi possível confirmar agora. Tente de novo em alguns minutos."; b.disabled = false;
+      }
+    }catch(e){
+      m.className = "msg erro"; m.textContent = "Sem conexão com o serviço. Confira a internet e tente de novo."; b.disabled = false;
+    }
+  });
+
+  $("b-copiar").addEventListener("click", async ()=>{
+    const c = $("c-chave"), m = $("m-copiar");
+    try { await navigator.clipboard.writeText(c.value); m.textContent = "Chave copiada."; }
+    catch(e){ c.select(); m.textContent = "Selecione a chave e copie com Ctrl+C."; }
+  });
+})();
+</script>
+</body>
+</html>
