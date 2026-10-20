@@ -9,10 +9,13 @@
 <meta property="og:description" content="Capacidade, carta X̄-R e GR&R com o passo a passo de cada cálculo, sem internet e com os dados dentro da planta.">
 <meta property="og:locale" content="pt_BR">
 <link rel="icon" href="/assets/favicon.png">
+<meta name="duostat-api" content="https://api.duosolucoesam.com.br">
+<meta name="duostat-turnstile" content="0x4AAAAAAFVwOYTkfoq-IlZO">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
+[hidden]{display:none !important}
 a{color:#0B2A4A}a:hover{color:#F2622D}
 #cob-mensal,#cob-anual{position:absolute;opacity:0;pointer-events:none}
 .cob-toggle label{cursor:pointer;padding:10px 20px;border-radius:99px;font-weight:600;color:#4A5560;display:inline-flex;align-items:center;gap:8px;min-height:44px;box-sizing:border-box}
@@ -240,9 +243,9 @@ a{color:#0B2A4A}a:hover{color:#F2622D}
 <div style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 48px; align-items: start">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <h2 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; color: #FFFFFF">Teste grátis, demonstração ou proposta</h2>
-<p style="margin: 0; font-size: 18px; color: #C9D4E0">Escolha o que você quer e responderemos pelo e-mail informado em até 1 dia útil. O teste de 30 dias segue com a licença e o guia de início.</p>
+<p style="margin: 0; font-size: 18px; color: #C9D4E0">O teste de 30 dias chega na hora: você confirma o e-mail e recebe a licença e o link do instalador em seguida. Demonstração, compra e proposta, respondemos pelo e-mail informado em até 1 dia útil.</p>
 </div>
-<form action="https://formsubmit.co/duosolucoesam@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 10px; padding: 28px">
+<form id="form-pedido" action="https://formsubmit.co/duosolucoesam@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 10px; padding: 28px">
 <input type="hidden" name="_subject" value="Site DUO — pedido DUOSTAT">
 <input type="hidden" name="_next" value="https://duosolucoesam.com.br/obrigado/">
 <input type="hidden" name="_template" value="table">
@@ -256,9 +259,15 @@ a{color:#0B2A4A}a:hover{color:#F2622D}
 <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #0B2A4A">Cargo<input type="text" name="cargo" autocomplete="organization-title" style="font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid #B9C3CE; border-radius: 6px; min-height: 44px; box-sizing: border-box"></label>
 <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: #26323E"><input type="checkbox" name="aceite_privacidade" value="sim" required style="margin-top: 4px; width: 18px; height: 18px"><span>Li e aceito a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span></label>
 <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: #26323E"><input type="checkbox" name="aceita_contato_comercial" value="sim" style="margin-top: 4px; width: 18px; height: 18px">Aceito receber contato comercial da DUO.</label>
-<button type="submit" style="font: inherit; font-weight: 600; background: #F2622D; color: #FFFFFF; border: 0; border-radius: 6px; padding: 14px 20px; min-height: 48px; cursor: pointer">Enviar pedido</button>
-<p style="margin: 0; font-size: 14px; color: #5B6470">Resposta em até 1 dia útil, pelo e-mail informado.</p>
+<div id="trial-humano" hidden style="min-height: 65px"></div>
+<button type="submit" id="botao-pedido" style="font: inherit; font-weight: 600; background: #F2622D; color: #FFFFFF; border: 0; border-radius: 6px; padding: 14px 20px; min-height: 48px; cursor: pointer">Enviar pedido</button>
+<p id="nota-pedido" role="status" aria-live="polite" style="margin: 0; font-size: 14px; color: #5B6470">Resposta em até 1 dia útil, pelo e-mail informado.</p>
 </form>
+<div id="trial-enviado" hidden tabindex="-1" style="background: #FFFFFF; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 24px; color: #0B2A4A">Confira seu e-mail.</h3>
+<p style="margin: 0; color: #26323E">Enviamos para <b id="trial-email"></b> um link para confirmar o endereço. Ao confirmar, a licença de 30 dias e o link do instalador chegam na hora.</p>
+<p style="margin: 0; font-size: 15px; color: #5B6470">O link vale por 2 horas e funciona uma vez. Não chegou em 5 minutos? Procure na caixa de spam ou de lixo eletrônico, ou escreva para <a href="mailto:comercial@duosolucoesam.com.br">comercial@duosolucoesam.com.br</a>.</p>
+</div>
 </div>
 </section>
 
@@ -281,8 +290,81 @@ document.addEventListener("click", function (e) {
   var a = e.target.closest("a[data-pedido]");
   if (!a) return;
   var campo = document.getElementById("campo-pedido");
-  if (campo) campo.value = a.getAttribute("data-pedido");
+  if (campo){ campo.value = a.getAttribute("data-pedido"); campo.dispatchEvent(new Event("change")); }
 });
+</script>
+<script>
+/* Teste de 30 dias automático (decisão de 19/10/2026): essa opção vai para o serviço da DUO em api.duosolucoesam.com.br,
+   que manda o link de confirmação do e-mail e, confirmado, a licença .duolic e o link do instalador. As outras opções
+   continuam no FormSubmit, com resposta da DUO em até 1 dia útil. A verificação anti-robô (Turnstile) só carrega no teste. */
+(function () {
+  var TESTE = "Teste grátis de 30 dias", POLITICA = "2026-10-13";
+  var meta = function (n) { var m = document.querySelector('meta[name="' + n + '"]'); return m ? m.content : ""; };
+  var API = meta("duostat-api"), SITEKEY = meta("duostat-turnstile");
+  var form = document.getElementById("form-pedido"), campo = document.getElementById("campo-pedido");
+  var caixa = document.getElementById("trial-humano"), botao = document.getElementById("botao-pedido"), nota = document.getElementById("nota-pedido");
+  var widget = null, carregando = false;
+
+  function renderizar() {
+    if (widget !== null || !window.turnstile) return;
+    /* o quadro normal tem 300 px; no celular estreito, o compacto cabe no formulário */
+    widget = window.turnstile.render(caixa, { sitekey: SITEKEY, language: "pt-br", size: caixa.clientWidth < 300 ? "compact" : "normal" });
+  }
+  window.duoTurnstilePronto = renderizar;
+  function prepararHumano() {
+    if (window.turnstile) return renderizar();
+    if (carregando) return;
+    carregando = true;
+    var s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=duoTurnstilePronto";
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  function avisar(texto, erro) { nota.textContent = texto; nota.style.color = erro ? "#B42318" : "#5B6470"; }
+  function ajustar() {
+    var teste = campo.value === TESTE;
+    caixa.hidden = !teste;
+    botao.textContent = teste ? "Receber a licença de teste" : "Enviar pedido";
+    avisar(teste ? "A licença chega no e-mail informado, logo depois da confirmação." : "Resposta em até 1 dia útil, pelo e-mail informado.");
+    if (teste) prepararHumano();
+  }
+  campo.addEventListener("change", ajustar);
+  ajustar();
+
+  form.addEventListener("submit", function (e) {
+    if (campo.value !== TESTE) return;
+    e.preventDefault();
+    var token = widget !== null && window.turnstile ? window.turnstile.getResponse(widget) : "";
+    if (!token) { avisar("Aguarde a verificação anti-robô, logo acima do botão, e envie de novo.", true); return; }
+    var rep = null;
+    try { rep = (JSON.parse(localStorage.getItem("duo_rep") || "null") || {}).rep || ""; } catch (x) { rep = ""; }
+    var v = function (n) { return form.elements[n].value; };
+    var corpo = {
+      nome: v("nome"), email: v("email"), empresa: v("empresa"), cargo: v("cargo"), rep: rep,
+      origem: location.pathname + location.search, idioma: "pt-BR", politica_versao: POLITICA,
+      aceite: form.elements.aceite_privacidade.checked, turnstile: token
+    };
+    botao.disabled = true; avisar("Enviando…");
+    fetch(API + "/api/trial", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (r) {
+        if (r.ok && r.j.estado === "confirme_email") {
+          document.getElementById("trial-email").textContent = corpo.email;
+          form.hidden = true;
+          var pronto = document.getElementById("trial-enviado");
+          pronto.hidden = false; pronto.focus();
+          return;
+        }
+        avisar(r.j.mensagem || "Não foi possível enviar agora. Tente de novo em alguns minutos.", true);
+        if (r.j.campo && form.elements[r.j.campo]) form.elements[r.j.campo].focus();
+        botao.disabled = false; window.turnstile.reset(widget);
+      })
+      .catch(function () {
+        avisar("Sem conexão com o serviço. Confira a internet e tente de novo, ou escreva para comercial@duosolucoesam.com.br.", true);
+        botao.disabled = false; window.turnstile.reset(widget);
+      });
+  });
+})();
 </script>
 <script>
 /* Representante: um link com ?rep=CODIGO marca o visitante por 90 dias; vale o primeiro representante.
