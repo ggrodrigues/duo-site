@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duo Tools | DUO Soluções</title>
+<meta name="description" content="Ferramentas e simuladores gratuitos para engenharia e qualidade, direto no navegador.">
+<meta property="og:title" content="Duo Tools | DUO Soluções">
+<meta property="og:description" content="Ferramentas e simuladores gratuitos para engenharia e qualidade, direto no navegador.">
+<meta property="og:image" content="https://duosolucoesam.com.br/assets/tools/duo-tools-ilustracao.jpg">
+<meta property="og:locale" content="pt_BR">
+<link rel="canonical" href="https://duosolucoesam.com.br/tools/">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; }
+#duo-tools a { color: #0B2A4A; }
+#duo-tools a:hover { color: #F2622D; }
+#duo-tools a:focus-visible { outline: 2px solid #0B2A4A; outline-offset: 3px; }
+#duo-tools footer a:focus-visible { outline-color: #FFFFFF; }
+#duo-tools nav [aria-current="page"] { text-decoration: underline !important; text-decoration-color: #F2622D !important; text-decoration-thickness: 2px !important; text-underline-offset: 6px; }
+#duo-tools .duo-tools-eyebrow { font: 700 13px/1.6 Montserrat, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #B4461C; }
+#duo-tools .hero-mock { justify-self: end; width: 100%; max-width: 540px; box-sizing: border-box; aspect-ratio: 1120 / 716; object-fit: cover; }
+@container (min-width: 900px) and (max-width: 1099px) {
+  #duo-tools .duo-tools-hero-grid { grid-template-columns: 1fr 1fr !important; }
+}
+@container (max-width: 899px) {
+  #duo-tools .duo-tools-hero-grid { padding-block: 36px 40px !important; gap: 28px !important; }
+  #duo-tools .hero-mock { justify-self: start; }
+  #duo-tools .duo-tools-catalog { padding-block: 28px 40px !important; gap: 14px !important; }
+  #duo-tools h1 { font-size: clamp(28px, 6cqi, 34px) !important; }
+  #duo-tools nav { gap: 10px 18px !important; }
+}
+@container (max-width: 600px) {
+  #duo-tools .duo-tools-hero-grid { padding-block: 28px 32px !important; gap: 22px !important; }
+  #duo-tools .duo-tools-catalog { padding-block: 24px 32px !important; }
+  #duo-tools nav a { padding-block: 4px; }
+}
+#duo-tools .duo-catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding-top: 4px; }
+#duo-tools .duo-catalog-card { min-width: 0; border: 1px solid #EEF1F5; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(11, 42, 74, 0.05), 0 14px 30px -10px var(--area-sombra); transition: transform .18s ease, box-shadow .18s ease; }
+#duo-tools .duo-catalog-card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(11, 42, 74, 0.06), 0 20px 40px -10px var(--area-sombra-forte); }
+@media (prefers-reduced-motion: reduce) { #duo-tools .duo-catalog-card { transition: none; } #duo-tools .duo-catalog-card:hover { transform: none; } }
+#duo-tools [data-area="eletronica"] { --area-forte: #2F7FD1; --area-fundo: #DCEBFA; --area-texto: #0E4A86; --area-sombra: rgba(47, 127, 209, 0.32); --area-sombra-forte: rgba(47, 127, 209, 0.55); }
+#duo-tools [data-area="qualidade"] { --area-forte: #F2B705; --area-fundo: #FFF1C2; --area-texto: #6B4E00; --area-sombra: rgba(232, 168, 0, 0.34); --area-sombra-forte: rgba(232, 168, 0, 0.58); }
+#duo-tools [data-area="processo"] { --area-forte: #8A96A3; --area-fundo: #E6E9ED; --area-texto: #3D4752; --area-sombra: rgba(74, 88, 104, 0.28); --area-sombra-forte: rgba(74, 88, 104, 0.50); }
+#duo-tools .duo-tool-area { align-self: flex-start; font: 700 11.5px/1.4 Montserrat, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--area-texto); background: var(--area-fundo); padding: 3px 9px; border-radius: 6px; }
+#duo-tools .duo-catalog-card[hidden] { display: none; }
+#duo-tools .duo-filtros { display: flex; flex-wrap: wrap; gap: 8px; }
+#duo-tools .duo-filtro { font: 600 15px/1.2 "Source Sans 3", system-ui, sans-serif; color: #0B2A4A; background: #FFFFFF; border: 1.5px solid #C7D0DA; border-radius: 99px; padding: 7px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+#duo-tools .duo-filtro::before { content: ""; width: 10px; height: 10px; border-radius: 99px; background: var(--area-forte, #0B2A4A); }
+#duo-tools .duo-filtro[aria-pressed="true"] { border-color: #0B2A4A; background: #0B2A4A; color: #FFFFFF; }
+#duo-tools .duo-filtro:focus-visible { outline: 2px solid #F2622D; outline-offset: 2px; }
+#duo-tools .duo-tool-status { margin-top: auto; align-self: flex-start; background: #E3EAF2; color: #0B2A4A; font-weight: 600; font-size: 12px; padding: 2px 9px; border-radius: 99px; }
+#duo-tools .duo-tool-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
+#duo-tools .duo-tool-logo { display: block; width: 48px; height: 48px; flex: none; object-fit: contain; border-radius: 10px; }
+#duo-tools .duo-catalog-card h3 { margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 20px; line-height: 1.2; color: #0B2A4A; }
+#duo-tools .duo-tool-descriptor { margin: 2px 0 0; color: #0B2A4A; font-size: 15px; font-weight: 600; line-height: 1.3; }
+#duo-tools .duo-tool-description { margin: 0; color: #4A5560; font-size: 16px; line-height: 1.5; }
+#duo-tools .duo-catalog-suggestion { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 14px 20px; text-decoration: none; border: 1.5px dashed #F2622D; border-radius: 10px; background: #FDF1EA; }
+#duo-tools .duo-catalog-suggestion > span:first-child { flex: none; }
+#duo-tools .duo-suggestion-title { display: block; color: #0B2A4A; font: 700 18px/1.4 Montserrat, system-ui, sans-serif; }
+#duo-tools .duo-suggestion-description { display: block; color: #4A5560; }
+#duo-tools .duo-suggestion-action { margin-inline-start: auto; color: #B4461C; font-weight: 600; }
+@container (max-width: 420px) {
+  #duo-tools .duo-catalog-card { padding: 16px; }
+  #duo-tools .duo-catalog-suggestion { padding: 12px 16px; }
+  #duo-tools .duo-suggestion-action { margin-inline-start: 0; }
+}
+</style>
+</head>
+<body>
+<div id="duo-tools" style="container-type: inline-size; font-family: 'Source Sans 3', system-ui, sans-serif; color: #1A2530; background: #FFFFFF; font-size: 17px; line-height: 1.6">
+
+<header style="border-bottom: 1px solid #E3E7EC; background: #FFFFFF">
+<div style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="/" style="display: flex; align-items: center"><img src="/assets/site/logo-duo-solucoes.svg" alt="DUO Soluções" style="height: 44px; width: auto; display: block"></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-weight: 600; font-size: 16px">
+<a href="/#produtos" style="text-decoration: none">Produtos</a>
+<a href="/tools/" aria-current="page" style="text-decoration: none">Duo Tools</a>
+<a href="/#duvidas" style="text-decoration: none">Perguntas frequentes</a>
+<a href="#contato" style="text-decoration: none">Contato</a>
+<a href="https://wa.me/5592981490442?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20DUO." style="text-decoration: none; border: 1.5px solid #1F8A4C; color: #1F7A44; padding: 10px 18px; border-radius: 6px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px; font-weight: 700"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6L3 21z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2-1.5 1z"></path></svg>WhatsApp</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section id="topo" aria-labelledby="duo-tools-title" style="background: #F5F7F9; border-bottom: 1px solid #E3E7EC; overflow: hidden">
+<div class="duo-tools-hero-grid" style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 52px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 40px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="duo-tools-eyebrow">Duo Tools</div>
+<h1 id="duo-tools-title" style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 1.15; color: #0B2A4A; text-wrap: balance">Ferramentas e simuladores gratuitos</h1>
+<p style="margin: 0; font-size: 18px; color: #4A5560; max-width: 540px">Calculadoras, jogos e simuladores para praticar e resolver as contas do dia a dia em eletrônica, qualidade e engenharia de processo. Feitos pela DUO, que desenvolve software para a indústria.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px">
+<a href="#ferramentas" style="text-decoration: none; background: #F2622D; color: #FFFFFF; font-weight: 600; padding: 14px 24px; border-radius: 6px; min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center">Explorar o catálogo</a>
+</div>
+</div>
+<img class="hero-mock" width="1120" height="716" src="/assets/tools/duo-tools-ilustracao.jpg" alt="Ilustração de um simulador no navegador, com circuito de resistores, gráfico, medidor e controles deslizantes" style="display: block; height: auto; border-radius: 14px">
+</div>
+</section>
+
+<section id="ferramentas" aria-labelledby="duo-catalog-title" style="background: #FFFFFF">
+<div class="duo-tools-catalog" style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 16px">
+<h2 id="duo-catalog-title" style="margin: 0; font-family: Montserrat, system-ui, sans-serif; font-weight: 800; font-size: 30px; line-height: 1.15; color: #0B2A4A">Catálogo</h2>
+<div class="duo-filtros" role="group" aria-label="Filtrar por área">
+<button type="button" class="duo-filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+<button type="button" class="duo-filtro" data-filtro="eletronica" data-area="eletronica" aria-pressed="false">Eletrônica</button>
+<button type="button" class="duo-filtro" data-filtro="qualidade" data-area="qualidade" aria-pressed="false">Qualidade</button>
+<button type="button" class="duo-filtro" data-filtro="processo" data-area="processo" aria-pressed="false">Engenharia de Processo</button>
+</div>
+<div class="duo-catalog-grid">
+<article class="duo-catalog-card" data-area="eletronica">
+<span class="duo-tool-area">Eletrônica</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/ohm-a-ohm-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>Ohm a Ohm</h3>
+<p class="duo-tool-descriptor">Calculadora e jogo de circuitos</p>
+</div>
+</div>
+<p class="duo-tool-description">Calcule a resistência equivalente ou monte circuitos para atingir o alvo de cada fase.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="eletronica">
+<span class="duo-tool-area">Eletrônica</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/codigo-de-cores-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>Código de Cores</h3>
+<p class="duo-tool-descriptor">Leitor e jogo de resistores</p>
+</div>
+</div>
+<p class="duo-tool-description">Leia as faixas de um resistor e acerte o valor em ohms.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="eletronica">
+<span class="duo-tool-area">Eletrônica</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/ponto-q-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>Ponto Q</h3>
+<p class="duo-tool-descriptor">Jogo de polarização do TBJ</p>
+</div>
+</div>
+<p class="duo-tool-description">Ajuste RB, RC e VCC e veja o ponto Q andar na reta de carga, do corte à saturação.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="qualidade">
+<span class="duo-tool-area">Qualidade</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/cpk-na-mao-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>Cpk na Mão</h3>
+<p class="duo-tool-descriptor">Capacidade do processo passo a passo</p>
+</div>
+</div>
+<p class="duo-tool-description">Calcule Cp e Cpk conta por conta e tente acertar o Cpk só pelo histograma.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="qualidade">
+<span class="duo-tool-area">Qualidade</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/grr-rapido-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>GR&amp;R Rápido</h3>
+<p class="duo-tool-descriptor">Análise do sistema de medição</p>
+</div>
+</div>
+<p class="duo-tool-description">Descubra quanto da variação vem do instrumento e quanto vem da peça.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="processo">
+<span class="duo-tool-area">Engenharia de Processo</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/ritmo-de-linha-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>Ritmo de Linha</h3>
+<p class="duo-tool-descriptor">Simulador de ciclos de produção</p>
+</div>
+</div>
+<p class="duo-tool-description">Organize os postos e simule o ciclo com tempos de manuseio, máquina e caminhada.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="processo">
+<span class="duo-tool-area">Engenharia de Processo</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/takt-time-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>Takt Time</h3>
+<p class="duo-tool-descriptor">Takt e balanceamento de linha</p>
+</div>
+</div>
+<p class="duo-tool-description">Calcule o takt pela demanda e jogue para balancear os postos da linha.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+<article class="duo-catalog-card" data-area="processo">
+<span class="duo-tool-area">Engenharia de Processo</span>
+<div class="duo-tool-identity">
+<img src="/assets/tools/oee-logo.png" alt="" width="48" height="48" class="duo-tool-logo">
+<div>
+<h3>OEE</h3>
+<p class="duo-tool-descriptor">Eficiência global do equipamento</p>
+</div>
+</div>
+<p class="duo-tool-description">Veja o OEE decomposto em disponibilidade, desempenho e qualidade.</p>
+<span class="duo-tool-status">Em desenvolvimento</span>
+</article>
+</div>
+<a class="duo-catalog-suggestion" href="mailto:comercial@duosolucoesam.com.br?subject=Sugest%C3%A3o%20para%20o%20Duo%20Tools">
+<span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 99px; background: #F2622D; color: #FFFFFF"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 4v12M4 10h12"></path></svg></span>
+<span>
+<span class="duo-suggestion-title">Sua ideia</span>
+<span class="duo-suggestion-description">Que cálculo ou simulação facilitaria o seu trabalho? Conte para a DUO.</span>
+</span>
+<span class="duo-suggestion-action">Enviar sugestão →</span>
+</a>
+</div>
+</section>
+</main>
+
+<footer id="contato" style="background: #081E38; color: #AEBBCA; font-size: 15px">
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center">
+<img src="/assets/site/logo-duo-solucoes-reversa.svg" alt="DUO Soluções" style="height: 36px; width: auto; display: block">
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<span>DUO SOLUCOES LTDA · CNPJ 68.463.489/0001-71 · Avenida Américo Antony, 1924, Lote 200, Conj. 3, Sala 10, Japiim, CEP 69076-810, Manaus-AM</span>
+<a href="mailto:comercial@duosolucoesam.com.br" style="color: #DCE4ED">comercial@duosolucoesam.com.br</a>
+<a href="/privacidade/" style="color: #DCE4ED">Política de Privacidade</a>
+<a href="/termos/" style="color: #DCE4ED">Termos de Licença</a>
+</div>
+</div>
+</footer>
+
+</div>
+<script>
+/* Filtro do catálogo por área. Sem JavaScript, todas as ferramentas aparecem. */
+(function () {
+  var botoes = document.querySelectorAll(".duo-filtro"), cartoes = document.querySelectorAll(".duo-catalog-card");
+  botoes.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var f = b.getAttribute("data-filtro");
+      botoes.forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+      cartoes.forEach(function (c) { c.hidden = f !== "todas" && c.getAttribute("data-area") !== f; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
