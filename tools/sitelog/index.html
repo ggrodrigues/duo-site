@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="canonical" href="https://duosolucoesam.com.br/tools/sitelog/"><meta property="og:title" content="Duo SiteLog | Duo Tools"><meta property="og:description" content="Registre visitas técnicas, medições e fotos e baixe relatórios em PDF."><meta property="og:url" content="https://duosolucoesam.com.br/tools/sitelog/"><title>Duo SiteLog | Duo Tools</title><meta name="description" content="Organize visitas por cliente e equipamento, registre medições e fotos e gere relatórios em PDF."><link rel="icon" href="assets/visita-marca.svg"><link rel="stylesheet" href="style.css"><script defer src="assets/xlsx.min.js"></script><script defer src="app.js"></script><script defer src="assets/demo-banks.js"></script><script defer src="assets/demo-expanded-media.js"></script><script defer src="assets/demo-expanded.js"></script><script defer src="portal.js"></script><script defer src="drafts.js"></script><script defer src="directory.js"></script><script defer src="welcome.js"></script><script defer src="history.js"></script></head>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="canonical" href="https://duosolucoesam.com.br/tools/sitelog/"><meta property="og:title" content="Duo SiteLog | Duo Tools"><meta property="og:description" content="Registre visitas técnicas, medições e fotos e baixe relatórios em PDF."><meta property="og:url" content="https://duosolucoesam.com.br/tools/sitelog/"><title>Duo SiteLog | Duo Tools</title><meta name="description" content="Organize visitas por cliente e equipamento, registre medições e fotos e gere relatórios em PDF."><link rel="icon" href="assets/visita-marca.svg"><link rel="stylesheet" href="style.css"><script defer src="assets/xlsx.min.js"></script><script defer src="app.js"></script><script defer src="assets/demo-banks.js"></script><script defer src="assets/demo-expanded-media.js"></script><script defer src="assets/demo-expanded.js"></script><script defer src="portal.js"></script><script defer src="drafts.js"></script><script defer src="directory.js"></script><script defer src="journey.js"></script><script defer src="welcome.js"></script><script defer src="history.js"></script></head>
 <body><header><div class="wrap bar"><img class="brand" src="assets/logo-duo.svg" alt="DUO Soluções"><div class="title"><img src="assets/visita-marca.svg" width="28" height="28" alt=""><h1>Duo SiteLog</h1></div><img class="mast-art" src="assets/manutencao-banner.webp" alt="" aria-hidden="true"><a href="https://duosolucoesam.com.br/tools/">Duo Tools</a></div><div class="wrap" id="sample-header" hidden><p class="hero-footnote" role="note">Registro fictício, apenas para demonstração.</p></div></header>
 <main class="wrap">
 <div id="portal">
@@ -17,23 +17,23 @@
 <section id="clients-page" aria-labelledby="clients-title"><div class="catalog-head"><h2 id="clients-title" tabindex="-1">Clientes</h2><button type="button" id="new-first-visit" class="new-visit">Adicionar cliente</button></div><div id="clients-list" class="catalog-list"></div></section>
 </div>
 <dialog id="welcome-dialog" class="oper-dialog welcome-dialog" aria-labelledby="welcome-title">
-<div class="dialog-head welcome-head"><div><span class="welcome-kicker">DUO TOOLS</span><h2 id="welcome-title">Bem-vindo ao Duo SiteLog</h2></div><span id="welcome-phase" class="small">1 de 2</span></div>
+<div class="dialog-head welcome-head"><div class="welcome-product"><img src="assets/visita-marca.svg" width="30" height="30" alt=""><h2 id="welcome-title">Bem-vindo ao Duo SiteLog</h2></div><img class="welcome-brand" src="assets/logo-duo.svg" alt="DUO Soluções" width="110" height="32"><span id="welcome-phase" class="sr">1 de 2</span></div>
 <div class="data-body welcome-body">
  <section id="welcome-flow" aria-label="Como funciona">
-  <p>Do atendimento em campo ao PDF, sem digitar os dados duas vezes.</p>
+  <p>Registre visitas técnicas e consulte o histórico de cada equipamento.</p>
   <ol class="welcome-flow">
-   <li><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M5 34h38M9 34V11l13-5v28m0-18h16v18M13 15h4m-4 6h4m-4 6h4m13-6h4m-4 6h4" /></svg><div><strong>Escolha o cliente</strong><small>Selecione a empresa prestadora e abra um cliente.</small></div></li>
-   <li><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="6" y="7" width="36" height="25" rx="3"/><path d="M11 25h14m-14 3h14m8-4 2-3 3 2M14 32v3m20-3v3"/><circle cx="33" cy="15" r="3"/></svg><div><strong>Abra o equipamento</strong><small>Encontre a máquina pelo nome ou pela identificação.</small></div></li>
-   <li><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="5" y="11" width="25" height="21" rx="3"/><path d="M11 11l3-4h9l3 4m9 12 4-4 4 4m-4-4v14"/><circle cx="17.5" cy="21" r="5"/></svg><div><strong>Registre a visita</strong><small>Descreva o serviço e adicione medições e fotos.</small></div></li>
-   <li><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M9 34V5h19l8 8v21zm19-29v9h8M14 21h16m-16 5h12M37 28l4 4 5-6"/></svg><div><strong>Revise e baixe</strong><small>Gere o PDF da visita ou o mensal do equipamento.</small></div></li>
+   <li><img class="welcome-art" src="assets/abertura/cliente.webp" width="480" height="480" alt=""><div><strong><span class="welcome-num" aria-hidden="true">1</span>Escolha o cliente</strong><small>Abra um cliente da prestadora.</small></div></li>
+   <li><img class="welcome-art" src="assets/abertura/equipamento.webp" width="480" height="480" alt=""><div><strong><span class="welcome-num" aria-hidden="true">2</span>Abra o equipamento</strong><small>Busque a máquina pelo nome ou pela identificação.</small></div></li>
+   <li><img class="welcome-art" src="assets/abertura/visita.webp" width="480" height="480" alt=""><div><strong><span class="welcome-num" aria-hidden="true">3</span>Registre a visita</strong><small>Anote o serviço, as medições e as fotos.</small></div></li>
+   <li><img class="welcome-art" src="assets/abertura/relatorio.webp" width="480" height="480" alt=""><div><strong><span class="welcome-num" aria-hidden="true">4</span>Revise e baixe</strong><small>Baixe o PDF da visita ou o mensal do equipamento.</small></div></li>
   </ol>
  </section>
  <section id="welcome-offer" class="welcome-offer" hidden aria-label="Duo Assist">
-  <div class="assist-mark" aria-hidden="true">DA</div>
+  <img class="assist-art" src="assets/abertura/assist.webp" width="480" height="480" alt="">
   <div><p class="welcome-kicker">DUO SOLUÇÕES</p><h3>Seu relatório, no modelo da sua empresa</h3><p>Quer levar medições, fotos e ordens de serviço direto para o formato que seu cliente já recebe? Fale com a DUO sobre adaptar o fluxo da sua equipe.</p><a href="mailto:comercial@duosolucoesam.com.br?subject=Duo%20Assist%20%7C%20Relat%C3%B3rios%20de%20visita">Falar sobre o Duo Assist</a></div>
  </section>
 </div>
-<div class="welcome-footer"><button type="button" id="welcome-next" class="primary" autofocus>Próximo</button></div>
+<div class="welcome-footer"><button type="button" id="welcome-skip" hidden>Pular tutorial</button><button type="button" id="welcome-next" class="primary" autofocus>Próximo</button></div>
 </dialog>
 <dialog id="company-dialog" class="oper-dialog" aria-labelledby="company-dialog-title"><div class="dialog-head"><h2 id="company-dialog-title">Empresa prestadora</h2><button id="company-close" type="button" autofocus>Fechar</button></div><div class="data-body"><div id="company-options"></div></div></dialog>
 <dialog id="catalog-dialog" class="oper-dialog" aria-labelledby="catalog-title"><div class="dialog-head"><h2 id="catalog-title">Cadastro</h2><button id="catalog-close" type="button">Fechar</button></div><form id="catalog-form" class="data-body"><label>Nome<input id="catalog-name" required maxlength="120"></label><label id="catalog-local-label" hidden>Local / unidade<input id="catalog-local" maxlength="120"></label><div id="provider-logo-controls" hidden><label>Logo para o PDF (PNG, JPEG ou WebP)<input id="provider-logo" type="file" accept="image/png,image/jpeg,image/webp"></label><label class="logo-remove"><input id="provider-logo-remove" type="checkbox">Remover logo atual</label></div><p id="catalog-error" class="small" role="alert"></p><div class="month-actions"><button class="primary" type="submit">Salvar cadastro</button></div></form></dialog>
@@ -66,7 +66,38 @@
 </form>
 <section id="review" hidden><div class="section-head"><h2 tabindex="-1" id="review-title">Revisão da visita</h2><button type="button" id="edit-visit" data-view="edit">Editar visita</button></div><article id="paper"></article></section>
 <div class="bottom visit-bottom"><span class="small" id="save-label" role="status">Armazenamento local</span><button type="button" id="save-draft">Salvar rascunho</button><button type="button" class="primary" id="review-btn" data-view="review">Revisar visita</button><button type="button" class="primary" id="save-record"><span id="save-record-label">Concluir visita</span></button><button type="button" class="primary" id="visit-export" data-export>Baixar PDF</button></div></div></main>
+<dialog id="guided-finish" class="oper-dialog guided-finish" aria-labelledby="guided-finish-title" aria-describedby="guided-finish-note">
+ <div class="guided-finish-body">
+  <div class="guided-finish-art" aria-hidden="true">
+   <img src="assets/abertura/relatorio.webp" width="76" height="76" alt="">
+   <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="12" fill="#19684f"/><path d="m7 12 3 3 7-7" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <p class="guided-finish-kicker">Tutorial concluído</p>
+  <h2 id="guided-finish-title">Parabéns! Seu primeiro PDF está pronto.</h2>
+  <p id="guided-finish-note">O download foi iniciado. Você pode encontrar o relatório nos downloads do navegador.</p>
+  <p class="guided-finish-invite">Explore outras ferramentas de engenharia e qualidade da DUO.</p>
+ </div>
+ <div class="guided-finish-actions">
+  <a href="https://duosolucoesam.com.br/tools/" target="_blank" rel="noopener">Explorar Duo Tools</a>
+  <button type="button" id="guided-finish-home" class="primary" autofocus>Voltar à tela inicial</button>
+ </div>
+</dialog>
 <div id="tour-layer" hidden role="dialog" aria-modal="true" aria-labelledby="tour-title">
 <div id="tour-spot" aria-hidden="true"></div><div id="tour-box"><div id="tour-progress"></div><h2 id="tour-title"></h2><p id="tour-text"></p><div class="tour-controls"><button id="tour-skip" type="button">Pular</button><button id="tour-prev" type="button">Anterior</button><button class="primary" id="tour-next" type="button">Próximo</button></div></div></div>
+<aside id="guided-tour" class="guided-tour" hidden aria-label="Tutorial da visita">
+ <div class="guided-halo" aria-hidden="true"></div>
+ <div class="guided-panel">
+  <img id="guided-art" alt="" width="48" height="48">
+  <div class="guided-copy" aria-live="polite">
+   <p id="guided-progress"></p><h2 id="guided-title"></h2><p id="guided-text"></p>
+  </div>
+  <div class="guided-actions">
+   <button type="button" id="guided-example" hidden>Usar base de exemplo</button>
+   <button type="button" id="guided-prev" hidden>Anterior</button>
+   <button type="button" id="guided-next" hidden>Próximo</button>
+   <button type="button" id="guided-skip">Pular tutorial</button>
+  </div>
+ </div>
+</aside>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "44e2e6b843574a148e409724fed19a91"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>

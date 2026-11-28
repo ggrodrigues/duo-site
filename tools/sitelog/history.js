@@ -44,7 +44,7 @@ function renderHistory(){
   const line=el('tr');const td=el('td',undefined,'register-empty');td.colSpan=6;
   td.append(el('strong',dbLoading&&!demo?'Carregando histórico…':!db&&!demo?'Histórico indisponível':all.length?'Nenhum registro encontrado':activeRows().length?'Nenhuma visita para esta seleção':'Nenhuma manutenção registrada'));
   if(!dbLoading&&(db||demo))td.append(el('p',all.length?'Tente outro termo de busca.':'Use Registrar visita para criar o primeiro registro.','small'));
-  line.append(td);holder.append(line);return;
+  line.append(td);holder.append(line);dispatchEvent(new Event('sitelog:view'));return;
  }
  visible.slice(historyPage*pageSize,(historyPage+1)*pageSize).forEach(r=>{
   const line=el('tr',undefined,'hist-item');
@@ -60,6 +60,7 @@ function renderHistory(){
   button.setAttribute('aria-label','Abrir '+(r.equipamento||r.cliente)+' de '+brdate(r.data));button.onclick=()=>openRecord(r);cell.append(button);
   line.append(date,equip,os,status,photos,cell);holder.append(line);
  });
+ dispatchEvent(new Event('sitelog:view'));
 }
 function openRecord(r,seed,draft=null){
  returnPane=pane;visitReturn={query:$('search').value,page:historyPage,top:window.scrollY,record:r?.id,month:$('month-dialog').open?{asset:monthAsset,period:$('month-date').value}:null};current=draft?draft.visitId:r?.id??null;draftKey=draft?.id??null;draftSavedAt=draft?.updated??0;linkedContext={clientId:(r??seed)?.clientId,assetId:(r??seed)?.assetId};sample=!!r?.sample||!!demo;

@@ -263,6 +263,7 @@ function tourStep(){
  spotlight();$('tour-next').focus({preventScroll:true});
 }
 function startTour(key,from){
+ if(typeof isGuidedVisitActive==='function'&&isGuidedVisitActive()){$('guided-skip').focus({preventScroll:true});return;}
  const steps=tours[key].filter(([sel])=>document.querySelector(sel)?.getClientRects().length);
  if(!steps.length)return;
  tour={steps,index:0,from,scroll:scrollY};$('tour-layer').hidden=false;

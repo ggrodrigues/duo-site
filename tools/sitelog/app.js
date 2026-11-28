@@ -107,6 +107,7 @@ function show(view,focus=true){
  paintDraftStatus();
  if(!edit){drawPreview(collect());if(focus)$('review-title').focus();}
  else if(focus)scrollToField($('cliente').readOnly?'tecnico':'cliente');
+ dispatchEvent(new Event('sitelog:view'));
 }
 const winAnsi={'Ω':'Ohm','μ':'µ','–':'\x96','—':'\x97','‘':'\x91','’':'\x92','“':'\x93','”':'\x94','…':'\x85','•':'\x95','€':'\x80'};
 function pdfText(s){
@@ -238,6 +239,7 @@ function download(){
   const name=d.cliente.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48)||'cliente';
   const a=el('a');a.href=url;a.download=(sample?'AMOSTRA-':'')+'Relatorio-'+name+'-'+d.data+'.pdf';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
   note('PDF gerado. Veja os downloads do navegador.');
+  dispatchEvent(new Event('sitelog:pdf-generated'));
  }catch(err){note('Não consegui gerar o PDF. Remova uma foto grande e tente novamente.');console.error(err);}
 }
 if(typeof module!=='undefined'&&module.exports)module.exports={makePdf,pdfText,examples};
